@@ -1,0 +1,118 @@
+// Font sizes
+@each $name, $size in $font-sizes {
+  .font-#{$name} {
+    font-size: $size;
+  }
+}
+
+// Font weights
+@each $name, $weight in $font-weights {
+  .bold-#{$weight} {
+    font-weight: $weight;
+  }
+}
+
+// Text transforms
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+// Letter spacing
+.ls-1 {
+  letter-spacing: 1px;
+}
+
+// Margins
+.mtb-10 {
+  margin: spacing(1.25) 0;
+}
+
+.mlr-10 {
+  margin: 0 spacing(1.25);
+}
+
+.m-auto {
+  margin: 0 auto;
+}
+
+// Paddings
+.ptb {
+  padding: spacing(1.25) 0;
+}
+
+.plr-10 {
+  padding: 0 spacing(1.25);
+}
+
+// Flexbox utilities
+.flexRow {
+  @include flex();
+}
+
+.flexCol {
+  @include flex($direction: column);
+}
+
+.justify-sb {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+// Text alignment
+.text-center {
+  text-align: center;
+}
+
+// Colors
+.primaryColor {
+  color: $primary-color;
+}
+
+.primaryBgColor {
+  background: $primary-bg-color;
+}
+
+.textColor {
+  color: $text-color;
+}
+
+.grey {
+  color: $grey-color;
+}
+
+// Container
+.container {
+  width: $container-width;
+  margin: 0 auto;
+  position: relative;
+
+  @include responsive(tablet) {
+    width: 100%;
+  }
+}
+
+// Specific utilities
+.flex-gap {
+  flex-basis: 250px !important;
+}
+
+.skill-item {
+  flex: 1;
+  min-width: 50%;
+  box-sizing: border-box;
+
+  @include responsive(tablet) {
+    min-width: 100%;
+  }
+}

@@ -1,0 +1,107 @@
+@import "../../styles/abstracts/variables";
+
+.hero {
+  width: 100%;
+  max-width: 900px;
+  margin: 70px auto;
+  padding: 0 20px;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &__text {
+    flex: 1;
+    max-width: 600px;
+
+    &-greeting {
+      font-size: 20px;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #1a1a1a;
+
+      span {
+        color: #009b15;
+      }
+    }
+
+    &-title {
+      font-size: 42px;
+      line-height: 1.2;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      color: #1a1a1a;
+
+      span {
+        color: #009b15;
+        display: block;
+        margin-top: 8px;
+      }
+    }
+
+    &-description {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #aaaaaa;
+      margin-bottom: 20px;
+    }
+
+    &-skills {
+      font-size: 16px;
+      color: #aaaaaa;
+      margin: 0;
+      list-style: none;
+
+      li {
+        margin-bottom: 12px;
+        padding-left: 20px;
+        position: relative;
+
+        &::before {
+          content: "•";
+          color: #009b15;
+          position: absolute;
+          left: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        text-align: left;
+        display: inline-block;
+      }
+    }
+  }
+
+  &__image {
+    flex-shrink: 0;
+    width: 276px;
+    height: 445px;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      width: 220px;
+      height: 355px;
+    }
+  }
+}

@@ -5,18 +5,15 @@ import Button from "../UI/Button";
 import Tile from "../UI/Tile";
 import em from "../../assets/images/logoem.png";
 
-import "./style.css";
+import "./Qualification.scss";
 const Qualification = () => {
   return (
     <div className="container" style={{ padding: "50px 0" }}>
       <SmallHeading text="education" />
-      <MediumHeading text={"Qualifications"} />
-      <div
-        className="flexRow flexCol align-center justify-sb"
-        style={{ margin: "50px 0" }}
-      >
+      <MediumHeading text={"Mes Qualifications"} />
+      <div className="flexRow flexCol align-center justify-sb" style={{ margin: "50px 0" }}>
         <div data-aos="fade-up-right">
-          <img src={em} alt="" style={{ width: "300px" }} />
+          <img src={em} alt="" style={{ width: "400px" }} />
           <div
             style={{
               background: "#fff",
@@ -36,16 +33,9 @@ const Qualification = () => {
           </div>
         </div>
         <div>
-          <Tile
-            title="GARAC, Argenteuil"
-            mediumTitle="Bac pro Carrosserie"
-            desc="Construction des carrosseries"
-          />
-          <Tile
-            title="Ecole Multimédia, Paris"
-            mediumTitle="Bachelor Developpeur Web"
-            desc="Front-end"
-          />
+          <Tile title="GARAC, Argenteuil" mediumTitle="Bac pro Carrosserie" desc="Construction des carrosseries" />
+          <Tile title="Ecole Multimédia, Paris" mediumTitle="Bachelor Developpeur Web" desc="Certification Front-end" />
+          <Tile title="Ecole Multimédia, Paris" mediumTitle="Master Developpeur Multimedia" desc="Certification Full-Stack" />
         </div>
       </div>
     </div>

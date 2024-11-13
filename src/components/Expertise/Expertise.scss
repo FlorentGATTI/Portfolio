@@ -1,0 +1,17 @@
+.rightImgMeContainer {
+  width: 276px;
+  height: 445px;
+  position: absolute;
+  top: 0;
+}
+@media screen and (max-width: 900px) {
+  .rightImgMeContainer {
+    display: none;
+  }
+  .cardmobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: none;
+  }
+}

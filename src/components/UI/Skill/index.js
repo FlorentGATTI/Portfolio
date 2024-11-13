@@ -1,11 +1,11 @@
 import React from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import './style.css';
+import "./Skill.scss";
 
 const Skill = (props) => {
   return (
-    <div className="flexRow align-center mtb-10">
+    <div className="flexRow align-center mtb-10 plr-10 skill-item">
       <div className="skillContainer">
         <CircularProgressbar
           value={props.value}

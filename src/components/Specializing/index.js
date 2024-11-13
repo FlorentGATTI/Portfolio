@@ -5,61 +5,62 @@ import SmallHeading from "../UI/SmallHeading";
 import Skill from "../UI/Skill";
 import { colors } from "../../style";
 
-const Specializing = (props) => {
+const Specializing = () => {
   const skills = [
     {
-      skillName: `HTML/CSS`,
-      desc: `Expérience pratique dans HTML/CSS`,
+      skillName: `HTML/Emailling`,
+      desc: `Expérience dans HTML/Emailling`,
       value: 80,
       textColor: colors.primaryColor,
       pathColor: `#4AA96C`,
     },
     {
-      skillName: `JavaScript`,
-      desc: `Expérience pratique dans JavaScript`,
-      value: 65,
-      textColor: colors.primaryColor,
-      pathColor: `#4AA96C`,
-    },
-    {
-      skillName: `ReactJS`,
-      desc: `Expérience pratique dans ReactJS`,
+      skillName: `CSS/Bootstrap`,
+      desc: `Expérience dans CSS/Boostrap`,
       value: 70,
       textColor: colors.primaryColor,
       pathColor: `#4AA96C`,
     },
     {
-      skillName: `jQuery`,
-      desc: `Expérience pratique dans jQuery`,
-      value: 55,
-      textColor: colors.primaryColor,
-      pathColor: `#4AA96C`,
-    },
-    {
-      skillName: `Bootstrap`,
-      desc: `Expérience pratique dans Boostrap`,
-      value: 70,
-      textColor: colors.primaryColor,
-      pathColor: `#4AA96C`,
-    },
-    {
-      skillName: `NodeJS`,
-      desc: `Expérience pratique dans NodeJS`,
+      skillName: `JavaScript/jQuery`,
+      desc: `Expérience dans JavaScript/jQuery/ReactJS`,
       value: 65,
       textColor: colors.primaryColor,
       pathColor: `#4AA96C`,
     },
     {
-      skillName: `PHP`,
-      desc: `Expérience pratique dans PHP`,
+      skillName: `ThreeJS/VueJS/ReactJS, Native`,
+      desc: `Expérience dans ThreeJS/VueJS/ReactJS,Native`,
+      value: 50,
+      textColor: colors.primaryColor,
+      pathColor: `#4AA96C`,
+    },
+    {
+      skillName: `Suite Adobe`,
+      desc: `Expérience dans Adobe`,
+      value: 50,
+      textColor: colors.primaryColor,
+      pathColor: `#4AA96C`,
+    },
+
+    {
+      skillName: `NodeJS/Mysql`,
+      desc: `Expérience dans NodeJS/Mysql`,
       value: 60,
       textColor: colors.primaryColor,
       pathColor: `#4AA96C`,
     },
     {
-      skillName: `Mysql`,
-      desc: `Expérience pratique dans Mysql`,
-      value: 65,
+      skillName: `PHP`,
+      desc: `Expérience dans PHP/Laravel/Symphony`,
+      value: 60,
+      textColor: colors.primaryColor,
+      pathColor: `#4AA96C`,
+    },
+    {
+      skillName: `Cinema 4d`,
+      desc: `Expérience dans Cinema 4d`,
+      value: 70,
       textColor: colors.primaryColor,
       pathColor: `#4AA96C`,
     },
@@ -67,23 +68,12 @@ const Specializing = (props) => {
 
   return (
     <div className="container">
-      <Card style={{ padding: "50px" }}>
-        <SmallHeading text="Ce que je fais" />
-        <MediumHeading text="Spécialisation" />
-        <div
-          data-aos="fade-up"
-          className="flexRow wrap justify-sb"
-          style={{ padding: "30px" }}
-        >
+      <Card style={{ padding: "60px" }}>
+        <SmallHeading style={{ padding: "0px 0px 20px 0px" }} text="Ce que je vous propose" />
+        <MediumHeading style={{ padding: "0px 0px 40px 0px" }} text="Compétences" />
+        <div data-aos="fade-up" className="flexRow wrap justify-sb flex-gap">
           {skills.map((skill, index) => (
-            <Skill
-              key={index}
-              skillName={skill.skillName}
-              desc={skill.desc}
-              value={skill.value}
-              text-color={colors.primaryColors}
-              pathColor={skill.pathColor}
-            />
+            <Skill key={index} skillName={skill.skillName} desc={skill.desc} value={skill.value} text-color={colors.primaryColor} pathColor={skill.pathColor} />
           ))}
         </div>
       </Card>

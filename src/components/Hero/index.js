@@ -1,44 +1,39 @@
 import React from "react";
-import me from "../../assets/images/resizeMe.png";
-import Button from "../UI/Button";
-import "./style.css";
+import me from "../../assets/images/Gattipro.png";
+import "./Hero.scss";
 
-/**
- * @author
- * @function Hero
- */
-
-const Hero = (props) => {
+const Hero = () => {
   return (
-    <div className="container" style={{ marginTop: "70px" }}>
-      <div className="flexRow flexCol justify-sb align-center">
-        <div data-aos="fade-right">
-          <p className="uppercase bold-500 textColor ls-1 mtb-10">
-            <span className="primaryColor">Bonjour,</span> Je m'appelle Florent
-            GATTI
+    <section className="hero">
+      <div className="hero__content">
+        <div className="hero__text" data-aos="fade-right">
+          <p className="hero__text-greeting">
+            <span>BONJOUR</span>, JE M'APPELLE FLORENT GATTI
           </p>
-          <h1 className="textColor ls-1 mtb-10">
-            Je suis Développeur Web
+
+          <h1 className="hero__text-title">
+            Je suis Développeur Full-Stack
+            <span>BIG DATA</span>
           </h1>
-          <p className="font-12 grey mtb-10">
-          Développeur Web Junior Full Stack utilisant JS et PHP
+
+          <p className="hero__text-description">
+            Développeur passionné, alliant expertise technique et vision business.
+            Maîtrise des technologies web modernes et des outils Big Data.
           </p>
-          <div className="flexRow" style={{ margin: "30px 0" }}>
-            <div>
-              <Button label="Engagez-moi" />
-            </div>
-            <div className="mlr-10">
-              <Button label="Télécharger CV" inverse={true} />
-            </div>
-          </div>
+
+          <ul className="hero__text-skills">
+            <li>JavaScript, TypeScript, Python, PHP</li>
+            <li>React, Vue.js, Django, Express</li>
+            <li>Hadoop, Spark, analyse de données massives</li>
+          </ul>
         </div>
-        <div data-aos="fade-left">
-          <div className="meRightImgContainer">
-            <img src={me} alt="" />
-          </div>
+
+        <div className="hero__image" data-aos="fade-left">
+          <img src={me} alt="Florent GATTI" />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
+
 export default Hero;

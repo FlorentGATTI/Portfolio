@@ -1,0 +1,21 @@
+// Abstracts
+@import "abstracts/variables";
+@import "abstracts/functions";
+@import "abstracts/mixins";
+
+// Base
+@import "base/reset";
+@import "base/typography";
+@import "base/utilities";
+
+// Components
+@import "../components/Hero/Hero";
+@import "../components/Expertise/Expertise";
+@import "../components/Footer/Footer";
+@import "../components/LatestProjects/LatestProjects";
+@import "../components/Qualification/Qualification";
+@import "../components/Specializing/Specializing";
+@import "../components/Testimonials/Testimonials";
+@import "../components/UI/Card/Card";
+@import "../components/UI/Skill/Skill";
+@import "../components/UI/SocialConnect/SocialConnect";
