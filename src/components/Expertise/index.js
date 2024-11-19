@@ -3,9 +3,6 @@ import SmallHeading from "../UI/SmallHeading";
 import MediumHeading from "../UI/MediumHeading";
 import Card from "../UI/Card";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import { colors } from "../../style";
-import me from "../../assets/images/Florentpro-sansfond.png";
-import SocialConnect from "../UI/SocialConnect";
 import "./Expertise.scss";
 
 const expertiseData = [
@@ -14,7 +11,7 @@ const expertiseData = [
     percentage: 80,
     description: "Expertise en JavaScript/Node.js et Python/Django pour des solutions web complètes. Stack technique: React, Vue.js, Next.js, Express, FastAPI",
     icon: "💻",
-    color: "#00d31f"
+    color: "#00b31a"
   },
   {
     title: "Big Data & Analytics",
@@ -28,14 +25,14 @@ const expertiseData = [
     percentage: 70,
     description: "Développement avec TensorFlow, Keras et scikit-learn pour l'analyse prédictive et le deep learning",
     icon: "🧠",
-    color: "#009b15"
+    color: "#00b31a"
   },
   {
     title: "Architecture Cloud",
     percentage: 70,
     description: "Conception et déploiement d'architectures distribuées pour applications scalables",
     icon: "☁️",
-    color: "#008010"
+    color: "#00b31a"
   }
 ];
 
@@ -91,14 +88,6 @@ const Expertise = () => {
         <div className="expertise-header" data-aos="fade-up">
           <SmallHeading text="Expertise" />
           <MediumHeading text="Compétences particulières" />
-        </div>
-
-        <div className="expertise-profile" data-aos="fade-right">
-          <div className="profile-wrapper">
-            <img src={me} alt="Profile" className="profile-image" />
-            <div className="profile-glow"></div>
-          </div>
-          <SocialConnect className="social-connect" />
         </div>
 
         <div className="expertise-grid">

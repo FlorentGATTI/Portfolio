@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import resizeMe from "../../assets/images/resizeMe.png";
+import SocialConnect from "../UI/SocialConnect";
+
 
 const Testimonials = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -61,6 +63,7 @@ const Testimonials = () => {
         <a href="mailto:flogatti@orange.fr" className="contact-button">
           flogatti@orange.fr
         </a>
+        <SocialConnect className="social-connect" />
       </div>
     </div>
   );

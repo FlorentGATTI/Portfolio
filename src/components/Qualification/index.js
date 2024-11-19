@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import SmallHeading from "../UI/SmallHeading";
-import MediumHeading from "../UI/MediumHeading";
 import Button from "../UI/Button";
 import Tile from "../UI/Tile";
 import em from "../../assets/images/logoem.png";

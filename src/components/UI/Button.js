@@ -11,7 +11,7 @@ import { colors } from "../../style";
 const Button = (props) => {
   return (
     <a
-      href="https://documentcloud.adobe.com/link/review?uri=urn:aaid:scds:US:536f7d9c-7657-4c04-a133-d1b56256b64f"
+      href="https://acrobat.adobe.com/id/urn:aaid:sc:EU:55263c1b-a3e0-42d6-93bd-245267c1a547"
       style={{
         boxSizing: "border-box",
         padding: "13px 15px",
