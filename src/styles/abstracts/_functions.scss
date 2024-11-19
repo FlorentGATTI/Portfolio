@@ -1,0 +1,14 @@
+@use 'sass:map';
+@use 'variables' as *;
+
+@function z($layer) {
+  @if map.has-key($z-layers, $layer) {
+    @return map.get($z-layers, $layer);
+  }
+  @warn "No z-index found for `#{$layer}`";
+  @return null;
+}
+
+@function spacing($multiplier: 1) {
+  @return $spacing-unit * $multiplier;
+}

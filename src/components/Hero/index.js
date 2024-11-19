@@ -1,44 +1,59 @@
-import React from "react";
-import me from "../../assets/images/resizeMe.png";
-import Button from "../UI/Button";
-import "./style.css";
+import React, { useEffect, useState } from "react";
+import me from "../../assets/images/Florentpro.jpg";
+import "./Hero.scss";
 
-/**
- * @author
- * @function Hero
- */
+const Hero = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [typedText, setTypedText] = useState("");
+  const [typingComplete, setTypingComplete] = useState(false);
+  const fullText = "Je suis Développeur Full-Stack";
 
-const Hero = (props) => {
+  useEffect(() => {
+    setIsVisible(true);
+    let index = 0;
+
+    const typeWriter = setInterval(() => {
+      if (index < fullText.length) {
+        setTypedText((prev) => prev + fullText[index]);
+        index++;
+      } else {
+        clearInterval(typeWriter);
+        setTypingComplete(true);
+      }
+    }, 50);
+
+    return () => clearInterval(typeWriter);
+  }, []);
+
   return (
-    <div className="container" style={{ marginTop: "70px" }}>
-      <div className="flexRow flexCol justify-sb align-center">
-        <div data-aos="fade-right">
-          <p className="uppercase bold-500 textColor ls-1 mtb-10">
-            <span className="primaryColor">Bonjour,</span> Je m'appelle Florent
-            GATTI
+    <section className="hero">
+      <div className={`hero__content ${isVisible ? "visible" : ""}`}>
+        <div className="hero__text fade-in">
+          <p className="hero__text-greeting">
+            <span>BONJOUR</span>, JE M'APPELLE FLORENT GATTI
           </p>
-          <h1 className="textColor ls-1 mtb-10">
-            Je suis Développeur Web
+
+          <h1 className={`hero__text-title ${!typingComplete ? "typing" : ""}`}>
+            {typedText}
+            {typingComplete && <span>BIG DATA</span>}
           </h1>
-          <p className="font-12 grey mtb-10">
-          Développeur Web Junior Full Stack utilisant JS et PHP
-          </p>
-          <div className="flexRow" style={{ margin: "30px 0" }}>
-            <div>
-              <Button label="Engagez-moi" />
-            </div>
-            <div className="mlr-10">
-              <Button label="Télécharger CV" inverse={true} />
-            </div>
-          </div>
+
+          <p className="hero__text-description">Développeur Full-Stack spécialisé en Big Data, j'allie expertise technique et vision business pour transformer les données massives en solutions à forte valeur ajoutée. Master en Big Data et architectures distribuées.</p>
+
+          <ul className="hero__text-skills">
+            <li>JavaScript/TypeScript: React, Vue.js, Next.js</li>
+            <li>Python/Backend: Django, FastAPI, Express</li>
+            <li>Big Data: Hadoop, Spark, Pandas, TensorFlow</li>
+            <li>Base de données: MySQL, PostgreSQL, MongoDB</li>
+          </ul>
         </div>
-        <div data-aos="fade-left">
-          <div className="meRightImgContainer">
-            <img src={me} alt="" />
-          </div>
+
+        <div className="hero__image fade-in">
+          <img src={me} alt="Portrait professionnel" />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
+
 export default Hero;

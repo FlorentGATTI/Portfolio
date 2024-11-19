@@ -1,0 +1,68 @@
+@use 'sass:map';
+@use 'sass:color';
+
+// Colors
+$primary-color: #009b15;
+$primary-bg-color: #398856;
+$secondary-color: #2196f3;
+$text-color: #1a1a1a;
+$grey-color: #aaaaaa;
+$light-grey: #f5f5f5;
+$background-color: #f5fffa;
+
+// Typography
+$font-family: "Ubuntu", sans-serif;
+$font-sizes: (
+  "xs": 10px,
+  "sm": 12px,
+  "md": 14px,
+  "base": 16px,
+  "lg": 18px,
+  "xl": 20px,
+  "2xl": 25px,
+  "3xl": 30px
+);
+
+$font-weights: (
+  "light": 300,
+  "regular": 400,
+  "medium": 500,
+  "semibold": 600,
+  "bold": 700
+);
+
+// Spacing
+$spacing-unit: 8px;
+$container-padding: 20px;
+$section-spacing: 60px;
+$container-width: 900px;
+
+// Breakpoints
+$breakpoints: (
+  "mobile": 480px,
+  "tablet": 768px,
+  "desktop": 1024px,
+  "large": 1200px
+);
+
+// Transitions
+$transition-fast: 0.2s;
+$transition-normal: 0.3s;
+$transition-slow: 0.5s;
+
+// Z-index
+$z-layers: (
+  "modal": 1000,
+  "overlay": 900,
+  "dropdown": 800,
+  "header": 700,
+  "footer": 600
+);
+
+// Mixins for responsive design
+@mixin responsive($breakpoint) {
+  $size: map.get($breakpoints, $breakpoint);
+  @media screen and (max-width: $size) {
+    @content;
+  }
+}

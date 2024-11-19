@@ -9,6 +9,8 @@ import Footer from "./components/Footer";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+import "./styles/main.scss";
+
 /**
  * @author
  * @function App
@@ -22,7 +24,7 @@ const App = (props) => {
   }, []);
 
   return (
-    <div>
+    <div className="app">
       <Hero />
       <Specializing />
       <Expertise />

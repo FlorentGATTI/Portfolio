@@ -1,93 +1,178 @@
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Card from "../UI/Card";
-import MediumHeading from "../UI/MediumHeading";
-import SmallHeading from "../UI/SmallHeading";
-import Skill from "../UI/Skill";
-import { colors } from "../../style";
+import "./Specializing.scss";
 
-const Specializing = (props) => {
-  const skills = [
+const Specializing = () => {
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [animatedSkills, setAnimatedSkills] = useState([]);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const skills = useMemo(() => [
     {
-      skillName: `HTML/CSS`,
-      desc: `Expérience pratique dans HTML/CSS`,
-      value: 80,
-      textColor: colors.primaryColor,
-      pathColor: `#4AA96C`,
+      skillName: "Frontend Core",
+      desc: "HTML5, CSS3, JavaScript, TypeScript",
+      value: 85,
+      category: "frontend",
+      icon: "🌐",
     },
     {
-      skillName: `JavaScript`,
-      desc: `Expérience pratique dans JavaScript`,
-      value: 65,
-      textColor: colors.primaryColor,
-      pathColor: `#4AA96C`,
+      skillName: "Frontend Frameworks",
+      desc: "React, Vue.js, Next.js",
+      value: 75,
+      category: "frontend",
+      icon: "⚛️",
     },
     {
-      skillName: `ReactJS`,
-      desc: `Expérience pratique dans ReactJS`,
+      skillName: "Backend Core",
+      desc: "Python, PHP, Node.js",
+      value: 75,
+      category: "backend",
+      icon: "⚙️",
+    },
+    {
+      skillName: "Backend Frameworks",
+      desc: "Django, Express, FastAPI, Laravel",
       value: 70,
-      textColor: colors.primaryColor,
-      pathColor: `#4AA96C`,
+      category: "backend",
+      icon: "🔧",
     },
     {
-      skillName: `jQuery`,
-      desc: `Expérience pratique dans jQuery`,
-      value: 55,
-      textColor: colors.primaryColor,
-      pathColor: `#4AA96C`,
-    },
-    {
-      skillName: `Bootstrap`,
-      desc: `Expérience pratique dans Boostrap`,
+      skillName: "Big Data Technologies",
+      desc: "Hadoop, Spark, Data Engineering",
       value: 70,
-      textColor: colors.primaryColor,
-      pathColor: `#4AA96C`,
+      category: "data",
+      icon: "📊",
     },
     {
-      skillName: `NodeJS`,
-      desc: `Expérience pratique dans NodeJS`,
+      skillName: "Data Analysis",
+      desc: "Pandas, NumPy, Matplotlib, Scikit-learn",
+      value: 70,
+      category: "data",
+      icon: "📈",
+    },
+    {
+      skillName: "Machine Learning",
+      desc: "TensorFlow, Keras, Deep Learning",
       value: 65,
-      textColor: colors.primaryColor,
-      pathColor: `#4AA96C`,
+      category: "data",
+      icon: "🧠",
     },
     {
-      skillName: `PHP`,
-      desc: `Expérience pratique dans PHP`,
-      value: 60,
-      textColor: colors.primaryColor,
-      pathColor: `#4AA96C`,
+      skillName: "Databases",
+      desc: "MySQL, PostgreSQL, MongoDB",
+      value: 75,
+      category: "database",
+      icon: "🗄️",
     },
     {
-      skillName: `Mysql`,
-      desc: `Expérience pratique dans Mysql`,
+      skillName: "DevOps & Tools",
+      desc: "Git, Docker, Cloud Computing",
+      value: 70,
+      category: "tools",
+      icon: "🛠️",
+    },
+    {
+      skillName: "Design Tools",
+      desc: "Suite Adobe, Figma",
       value: 65,
-      textColor: colors.primaryColor,
-      pathColor: `#4AA96C`,
-    },
+      category: "tools",
+      icon: "🎨",
+    }
+   ], []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const component = document.querySelector('.specializing');
+    if (component) observer.observe(component);
+
+    return () => {
+      if (component) observer.unobserve(component);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      setAnimatedSkills([]);  // Reset animated skills when filter changes
+      const currentSkills = activeFilter === 'all'
+        ? skills
+        : skills.filter(skill => skill.category === activeFilter);
+
+      let delay = 0;
+      const interval = setInterval(() => {
+        if (delay >= currentSkills.length) {
+          clearInterval(interval);
+          return;
+        }
+        setAnimatedSkills(prev => [...prev, currentSkills[delay]]);
+        delay++;
+      }, 100);
+
+      return () => clearInterval(interval);
+    }
+  }, [activeFilter, isVisible, skills]);
+
+  const filters = [
+    { name: 'all', label: 'Tous' },
+    { name: 'frontend', label: 'Frontend' },
+    { name: 'backend', label: 'Backend' },
+    { name: 'data', label: 'Data' },
+    { name: 'tools', label: 'Tools' }
   ];
 
   return (
-    <div className="container">
-      <Card style={{ padding: "50px" }}>
-        <SmallHeading text="Ce que je fais" />
-        <MediumHeading text="Spécialisation" />
-        <div
-          data-aos="fade-up"
-          className="flexRow wrap justify-sb"
-          style={{ padding: "30px" }}
-        >
-          {skills.map((skill, index) => (
-            <Skill
-              key={index}
-              skillName={skill.skillName}
-              desc={skill.desc}
-              value={skill.value}
-              text-color={colors.primaryColors}
-              pathColor={skill.pathColor}
-            />
+    <div className="specializing">
+      <Card>
+        <div className="header">
+          <div className="title-container">
+            <h3 className="subtitle">Ce que je vous propose</h3>
+            <h2 className="title">Compétences</h2>
+            <div className="title-decoration"></div>
+          </div>
+        </div>
+
+        <div className="filters">
+          {filters.map(filter => (
+            <button
+              key={filter.name}
+              onClick={() => setActiveFilter(filter.name)}
+              className={`filter-btn ${activeFilter === filter.name ? 'active' : ''}`}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="skills-grid">
+          {animatedSkills.map((skill, index) => (
+            <div
+              key={`${skill.skillName}-${index}`}
+              className="skill-card"
+              style={{animationDelay: `${index * 100}ms`}}
+            >
+              <div className="skill-icon">{skill.icon}</div>
+              <h3 className="skill-name">{skill.skillName}</h3>
+              <p className="skill-desc">{skill.desc}</p>
+              <div className="progress-container">
+                <div
+                  className="progress-bar"
+                  style={{ width: `${skill.value}%` }}
+                />
+              </div>
+              <div className="skill-value">{skill.value}%</div>
+            </div>
           ))}
         </div>
       </Card>
     </div>
   );
 };
+
 export default Specializing;

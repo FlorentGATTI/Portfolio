@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+import "./Card.scss";
 
 const Card = ({ className = null, children, style, ...res }) => {
   const _class = className ? `card ${className}` : `card`;
