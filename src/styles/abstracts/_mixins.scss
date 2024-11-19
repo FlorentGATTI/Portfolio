@@ -1,7 +1,11 @@
+@use 'variables' as *;
+@use 'sass:map';
+@use 'sass:list';
+
 // Media queries
 @mixin responsive($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media (max-width: map-get($breakpoints, $breakpoint)) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (max-width: map.get($breakpoints, $breakpoint)) {
       @content;
     }
   }
@@ -26,7 +30,7 @@
 @mixin transition($properties...) {
   $transitions: ();
   @each $prop in $properties {
-    $transitions: append($transitions, $prop $transition-normal ease, comma);
+    $transitions: list.append($transitions, $prop $transition-normal ease, comma);
   }
   transition: $transitions;
 }
@@ -34,7 +38,7 @@
 // Container
 @mixin container {
   width: 100%;
-  max-width: 1200px;
+  max-width: $container-width;
   margin: 0 auto;
   padding: 0 $container-padding;
 }

@@ -1,17 +1,221 @@
-.rightImgMeContainer {
-  width: 276px;
-  height: 445px;
-  position: absolute;
-  top: 0;
+.expertise-container {
+  position: relative;
+  padding: 4rem 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,211,31,0.05) 100%);
+  min-height: 100vh;
 }
-@media screen and (max-width: 900px) {
-  .rightImgMeContainer {
-    display: none;
+
+.expertise-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.expertise-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  perspective: 1000px;
+}
+
+.expertise-profile {
+  position: relative;
+  width: 300px;
+  margin: 0 auto 4rem;
+  perspective: 1000px;
+
+  .profile-wrapper {
+    position: relative;
+    transform-style: preserve-3d;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 25px;
+      background: linear-gradient(45deg, #00d31f, transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover::before {
+      opacity: 0.2;
+    }
   }
-  .cardmobile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: none;
+
+  .profile-image {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    animation: float 6s ease-in-out infinite;
+    transition: transform 0.5s ease;
+    transform-style: preserve-3d;
+
+    &:hover {
+      transform: translateZ(30px) rotate3d(1, 1, 0, 5deg);
+      animation: none;
+    }
+  }
+
+  .profile-glow {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    top: -25%;
+    left: -25%;
+    background: radial-gradient(
+      circle at center,
+      rgba(0,211,31,0.2) 0%,
+      transparent 70%
+    );
+    filter: blur(20px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  &:hover .profile-glow {
+    opacity: 1;
+  }
+}
+
+.social-connect {
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  position: relative;
+  perspective: 1000px;
+}
+
+.expertise-card {
+  background: rgba(255,255,255,0.98);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    transform: translateY(-10px) translateZ(20px);
+    box-shadow:
+      0 20px 40px rgba(0,211,31,0.15),
+      0 0 20px rgba(0,211,31,0.1);
+
+    .card-icon {
+      transform: scale(1.2) rotate(10deg);
+    }
+
+    .card-title {
+      background-position: 0 0;
+    }
+
+    .progress-container {
+      transform: scale(1.05) translateZ(10px);
+    }
+  }
+}
+
+.card-content {
+  padding: 2rem;
+  position: relative;
+}
+
+.progress-container {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  .card-icon {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    background: linear-gradient(90deg, currentColor 50%, #00d31f 50%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background-position 0.5s ease;
+  }
+}
+
+.card-description {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateZ(0);
+  }
+  50% {
+    transform: translateY(-10px) translateZ(20px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .expertise-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .expertise-card {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .expertise-container {
+    padding: 2rem 1rem;
+  }
+
+  .expertise-profile {
+    width: 200px;
+    margin-bottom: 3rem;
+  }
+
+  .card-content {
+    padding: 1.5rem;
+  }
+
+  .social-connect {
+    position: relative;
+    bottom: 0;
+    margin-top: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .expertise-profile .profile-image,
+  .expertise-card,
+  .progress-container,
+  .card-icon {
+    animation: none;
+    transition: none;
   }
 }

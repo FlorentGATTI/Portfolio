@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SmallHeading from "../UI/SmallHeading";
 import MediumHeading from "../UI/MediumHeading";
 import Card from "../UI/Card";
@@ -8,47 +8,129 @@ import me from "../../assets/images/Florentpro-sansfond.png";
 import SocialConnect from "../UI/SocialConnect";
 import "./Expertise.scss";
 
-const percentage = 70;
+const expertiseData = [
+  {
+    title: "Full-Stack Development",
+    percentage: 80,
+    description: "Expertise en JavaScript/Node.js et Python/Django pour des solutions web complètes. Stack technique: React, Vue.js, Next.js, Express, FastAPI",
+    icon: "💻",
+    color: "#00d31f"
+  },
+  {
+    title: "Big Data & Analytics",
+    percentage: 75,
+    description: "Maîtrise de Hadoop, Spark, Pandas et outils d'analyse pour le traitement de données massives",
+    icon: "📊",
+    color: "#00b31a"
+  },
+  {
+    title: "Machine Learning",
+    percentage: 70,
+    description: "Développement avec TensorFlow, Keras et scikit-learn pour l'analyse prédictive et le deep learning",
+    icon: "🧠",
+    color: "#009b15"
+  },
+  {
+    title: "Architecture Cloud",
+    percentage: 70,
+    description: "Conception et déploiement d'architectures distribuées pour applications scalables",
+    icon: "☁️",
+    color: "#008010"
+  }
+];
 
-const Expertise = (props) => {
+const Expertise = () => {
+  const [isInView, setIsInView] = useState(false);
+  const [animatedPercentages, setAnimatedPercentages] = useState(
+    expertiseData.map(() => 0)
+  );
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    const expertiseElement = document.querySelector('.expertise-container');
+    if (expertiseElement) {
+      observer.observe(expertiseElement);
+    }
+
+    return () => {
+      if (expertiseElement) {
+        observer.unobserve(expertiseElement);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isInView) {
+      const intervals = expertiseData.map((data, index) => {
+        return setInterval(() => {
+          setAnimatedPercentages(prev => {
+            const newPercentages = [...prev];
+            if (newPercentages[index] < data.percentage) {
+              newPercentages[index] += 1;
+            }
+            return newPercentages;
+          });
+        }, 20);
+      });
+
+      return () => intervals.forEach(interval => clearInterval(interval));
+    }
+  }, [isInView]);
+
   return (
-    <div className="container" style={{ padding: "50px 0px 20px 0px" }}>
-      <div data-aos="fade-right" className="rightImgMeContainer">
-        <img style={{ width: "250px", paddingTop: "100px" }} src={me} alt="" />
-        <SocialConnect style={{ position: "absolute", bottom: "-40px" }} />
-      </div>
-      <div>
-        <SmallHeading text="Expertise" />
-        <MediumHeading text="Compétences particulières" />
-      </div>
-      <div className="cardmobile">
-        <Card
-          style={{
-            padding: "30px",
-            width: "350px",
-            margin: "100px 500px",
-            position: "relative",
-            zIndex: 1,
-          }}
-          data-aos="flip-up"
-        >
-          <div className="flexRow align-center">
-            <div style={{ width: "80px", height: "80px" }}>
-              <CircularProgressbar
-                value={percentage}
-                text={`${percentage}%`}
-                styles={buildStyles({
-                  textColor: colors.primaryColor,
-                  pathColor: colors.primaryColor,
-                })}
-              />
-            </div>
-            <h2 className="textColor mlr-10" style={{ margin: "30px 10px" }}>
-              Spécialisations
-            </h2>
+    <div className="expertise-container">
+      <div className="expertise-content">
+        <div className="expertise-header" data-aos="fade-up">
+          <SmallHeading text="Expertise" />
+          <MediumHeading text="Compétences particulières" />
+        </div>
+
+        <div className="expertise-profile" data-aos="fade-right">
+          <div className="profile-wrapper">
+            <img src={me} alt="Profile" className="profile-image" />
+            <div className="profile-glow"></div>
           </div>
-          <p className="grey mtb-10 font-12">Je suis Full-Stack grace aux JS/Node.js et PHP/MySQL.</p>
-        </Card>
+          <SocialConnect className="social-connect" />
+        </div>
+
+        <div className="expertise-grid">
+          {expertiseData.map((item, index) => (
+            <Card
+              key={index}
+              className="expertise-card"
+              data-aos="zoom-in"
+              data-aos-delay={index * 100}
+            >
+              <div className="card-content">
+                <div className="progress-container">
+                  <CircularProgressbar
+                    value={animatedPercentages[index]}
+                    text={`${animatedPercentages[index]}%`}
+                    styles={buildStyles({
+                      textColor: item.color,
+                      pathColor: item.color,
+                      trailColor: "rgba(0,211,31,0.1)",
+                      pathTransition: "stroke-dashoffset 0.5s ease",
+                    })}
+                  />
+                </div>
+                <div className="card-header">
+                  <span className="card-icon">{item.icon}</span>
+                  <h3 className="card-title">{item.title}</h3>
+                </div>
+                <p className="card-description">{item.description}</p>
+              </div>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   );

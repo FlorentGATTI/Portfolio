@@ -1,26 +1,29 @@
+@use '../abstracts/variables' as *;
+@use 'sass:map';
+
 body {
   font-family: $font-family;
-  font-size: map-get($font-sizes, "base");
+  font-size: map.get($font-sizes, "base");
   line-height: 1.5;
   color: $text-color;
 }
 
 h1 {
-  font-size: map-get($font-sizes, "3xl");
-  font-weight: map-get($font-weights, "bold");
+  font-size: map.get($font-sizes, "3xl");
+  font-weight: map.get($font-weights, "bold");
 }
 
 h2 {
-  font-size: map-get($font-sizes, "2xl");
-  font-weight: map-get($font-weights, "semibold");
+  font-size: map.get($font-sizes, "2xl");
+  font-weight: map.get($font-weights, "semibold");
 }
 
 h3 {
-  font-size: map-get($font-sizes, "xl");
-  font-weight: map-get($font-weights, "medium");
+  font-size: map.get($font-sizes, "xl");
+  font-weight: map.get($font-weights, "medium");
 }
 
 p {
-  font-size: map-get($font-sizes, "base");
-  font-weight: map-get($font-weights, "regular");
+  font-size: map.get($font-sizes, "base");
+  font-weight: map.get($font-weights, "regular");
 }

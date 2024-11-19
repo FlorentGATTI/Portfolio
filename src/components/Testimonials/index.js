@@ -1,48 +1,67 @@
-import React from "react";
-import SmallHeading from "../UI/SmallHeading";
-import MediumHeading from "../UI/MediumHeading";
-import Card from "../UI/Card";
-import profil from "../../assets/images/logo.jpg";
+import React, { useState, useEffect } from "react";
+import resizeMe from "../../assets/images/resizeMe.png";
 
-import "./Testimonials.scss";
+const Testimonials = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
-const Testimonials = (props) => {
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <div className="container">
-      <div data-aos="fade-down">
-        <SmallHeading text="Témoignages" />
-        <MediumHeading text="A propos de moi" />
-      </div>
-      <div className="flexRow align-center justify-sb" style={{ padding: "50px 50px" }}>
-        <div data-aos="fade-left" className="testimonialImgContainer mlr-10"></div>
-        <Card data-aos="zoom-in" className="myCard">
-          <div className="flexRow align-center">
-            <div className="profileImgContainer">
-              <img src={profil} alt="" />
-            </div>
-            <div className="mlr-10">
-              <p className="primaryColor font-16">Florent GATTI</p>
-              <p className="textColor font-14 bold-600">Developpeur Multimédia</p>
-            </div>
-          </div>
-          <p className="mtb-10 grey" style={{ padding: "45px 0" }}>
-            Je pratique le développement web depuis 2019, période durant laquelle j'ai travaillé dans différents environnements à l'école, comme en entreprise. Je suis professionnel motivé, autonome et curieux qui aime résoudre les problemes. Je me passionne pour la convivialité et l'expérience utilisateur avec des connaissances techniques pour créer des expériences numériques responsives. Mon
-            répertoire comprend des languages de programmations tels que HTML, CSS, JS, PHP et des outils comme ReactJS / Native, Wordpress / Drupal, Bootstrap, jQuery, la configuration des serveurs MySQL et Apache etc ...
-          </p>
-        </Card>
-        <div data-aos="fade-right" className="testimonialImgContainer mlr-10"></div>
+    <div className={`testimonials-section ${isVisible ? "visible" : ""}`}>
+      <div className="heading-container">
+        <h1 className="title">À propos de moi</h1>
       </div>
 
-      <Card className="m-auto contactCard">
-        <p className="text-center font-12 mtb-10">
-          Vous avez un projet en tête ?<br />
-          <span className="primaryColor">N'hésiter pas à me contacter par mail !</span>
-        </p>
-        {/* <p className="text-center font-25">flogatti@orange.fr</p> */}
-        <div className="text-center font-25">
-          <a href="mailto:flogatti@orange.fr">flogatti@orange.fr</a>
+      <div className="profile-card">
+        <div className="profile-header">
+          <div className="avatar">
+            <img src={resizeMe} alt="Florent GATTI" />
+          </div>
+          <div className="profile-info">
+            <h2 className="name">Florent GATTI</h2>
+          </div>
         </div>
-      </Card>
+
+        <div className="description">
+          <p>Passionné par l'innovation technologique et spécialisé en Big Data, j'associe expertise technique et vision stratégique pour transformer des volumes massifs de données en solutions à forte valeur ajoutée.</p>
+        </div>
+
+        <div className="expertise-grid">
+          {[
+            {
+              title: "Innovation & Veille",
+              description: "Veille active sur l'IA, le Big Data et le Cloud Computing",
+              icon: "🔍",
+            },
+            {
+              title: "Architecture",
+              description: "Patterns de conception et bonnes pratiques DevOps",
+              icon: "🏗️",
+            },
+            {
+              title: "Open Source",
+              description: "Contribution et suivi des projets innovants dans l'écosystème data",
+              icon: "🌐",
+            },
+          ].map((item, index) => (
+            <div key={index} className="expertise-card">
+              <span className="icon">{item.icon}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="contact-section">
+        <h2>Intéressé par mon profil ?</h2>
+        <p>N'hésitez pas à me contacter pour discuter de vos projets</p>
+        <a href="mailto:flogatti@orange.fr" className="contact-button">
+          flogatti@orange.fr
+        </a>
+      </div>
     </div>
   );
 };

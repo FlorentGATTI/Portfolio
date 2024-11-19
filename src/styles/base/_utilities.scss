@@ -1,3 +1,6 @@
+@use '../abstracts/variables' as *;
+@use 'sass:map';
+
 // Font sizes
 @each $name, $size in $font-sizes {
   .font-#{$name} {
@@ -7,7 +10,7 @@
 
 // Font weights
 @each $name, $weight in $font-weights {
-  .bold-#{$weight} {
+  .font-#{$name} {
     font-weight: $weight;
   }
 }
@@ -24,6 +27,11 @@
 // Letter spacing
 .ls-1 {
   letter-spacing: 1px;
+}
+
+// Spacing function
+@function spacing($multiplier) {
+  @return $multiplier * $spacing-unit;
 }
 
 // Margins
@@ -48,13 +56,19 @@
   padding: 0 spacing(1.25);
 }
 
+// Flexbox mixin
+@mixin flex($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+}
+
 // Flexbox utilities
 .flexRow {
   @include flex();
 }
 
 .flexCol {
-  @include flex($direction: column);
+  @include flex(column);
 }
 
 .justify-sb {
@@ -97,7 +111,7 @@
   margin: 0 auto;
   position: relative;
 
-  @include responsive(tablet) {
+  @include responsive("tablet") {
     width: 100%;
   }
 }
@@ -112,7 +126,7 @@
   min-width: 50%;
   box-sizing: border-box;
 
-  @include responsive(tablet) {
+  @include responsive("tablet") {
     min-width: 100%;
   }
 }

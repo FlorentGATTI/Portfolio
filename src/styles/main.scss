@@ -1,21 +1,21 @@
 // Abstracts
-@import "abstracts/variables";
-@import "abstracts/functions";
-@import "abstracts/mixins";
+@use 'abstracts/variables' as *;
+@use 'abstracts/functions' as *;
+@use 'abstracts/mixins' as *;
 
 // Base
-@import "base/reset";
-@import "base/typography";
-@import "base/utilities";
+@use 'base/reset' as *;
+@use 'base/typography' as *;
+@use 'base/utilities' as *;
 
-// Components
-@import "../components/Hero/Hero";
-@import "../components/Expertise/Expertise";
-@import "../components/Footer/Footer";
-@import "../components/LatestProjects/LatestProjects";
-@import "../components/Qualification/Qualification";
-@import "../components/Specializing/Specializing";
-@import "../components/Testimonials/Testimonials";
-@import "../components/UI/Card/Card";
-@import "../components/UI/Skill/Skill";
-@import "../components/UI/SocialConnect/SocialConnect";
+// Components (using relative paths)
+@use '../components/Hero/Hero' as *;
+@use '../components/Expertise/Expertise' as *;
+@use '../components/Footer/Footer' as *;
+@use '../components/LatestProjects/LatestProjects' as *;
+@use '../components/Qualification/Qualification' as *;
+@use '../components/Specializing/Specializing' as *;
+@use '../components/Testimonials/Testimonials' as *;
+@use '../components/UI/Card/Card' as *;
+@use '../components/UI/Skill/Skill' as *;
+@use '../components/UI/SocialConnect/SocialConnect' as *;
