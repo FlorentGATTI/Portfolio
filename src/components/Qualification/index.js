@@ -15,6 +15,7 @@ const Qualification = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredButton, setHoveredButton] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
   const sectionRef = useRef(null);
   const schoolInfoRef = useRef(null);
 
@@ -22,6 +23,13 @@ const Qualification = () => {
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 480);
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
@@ -106,10 +114,9 @@ const Qualification = () => {
       <div className="education-container">
         <div
           ref={schoolInfoRef}
-          className="school-info"
+          className={`school-info ${isMobile ? "mobile" : ""}`}
           style={{
-            transform: window.innerWidth > 1024 ? `translateY(${scrollProgress}px)` : "none",
-            transition: "transform 0.1s ease-out",
+            transform: !isMobile ? `translateY(${scrollProgress}px)` : "none",
           }}
         >
           <img src={em} alt="École Multimédia Logo" onClick={handleSchoolClick} className="school-logo" title="Visiter le site de l'École Multimédia" />
