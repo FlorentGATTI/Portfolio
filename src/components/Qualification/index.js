@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SectionHeader from "../UI/SectionHeader";
 import Button from "../UI/Button";
 import Tile from "../UI/Tile";
@@ -14,10 +14,62 @@ const QualificationItem = ({ data, isVisible }) => (
 const Qualification = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredButton, setHoveredButton] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const sectionRef = useRef(null);
+  const schoolInfoRef = useRef(null);
 
+  // Effet pour l'animation initiale
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+
+      const section = sectionRef.current;
+      const sectionRect = section.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionHeight = section.offsetHeight;
+
+      // Point où l'effet commence (quand le haut de la section atteint le bas de la fenêtre)
+      const startPoint = -sectionHeight;
+      // Point où l'effet se termine (quand le bas de la section atteint le haut de la fenêtre)
+      const endPoint = windowHeight;
+
+      // Calcul plus précis avec des limites
+      if (sectionRect.top <= windowHeight && sectionRect.bottom >= 0) {
+        const totalDistance = endPoint - startPoint;
+        const currentPosition = windowHeight - sectionRect.top;
+        const scrollProgress = currentPosition / totalDistance;
+
+        // Limiter la progression entre 0 et 1
+        const boundedProgress = Math.min(Math.max(scrollProgress, 0), 1);
+
+        // Calcul de la position avec une courbe d'accélération
+        const easedProgress = easeInOutQuad(boundedProgress);
+        const maxScroll = 695; // Distance maximale de défilement
+
+        setScrollProgress(easedProgress * maxScroll);
+      } else if (sectionRect.top > windowHeight) {
+        // Reset quand la section est en dessous de la fenêtre
+        setScrollProgress(0);
+      } else if (sectionRect.bottom < 0) {
+        // Maintenir la position finale quand la section est au-dessus
+        setScrollProgress(500);
+      }
+    };
+
+    // Fonction d'accélération pour un mouvement plus naturel
+    const easeInOutQuad = (t) => {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const qualifications = [
@@ -49,10 +101,17 @@ const Qualification = () => {
   };
 
   return (
-    <div className={`qualification-section ${isVisible ? "visible" : ""}`} id="formation">
+    <div className={`qualification-section ${isVisible ? "visible" : ""}`} id="formation" ref={sectionRef}>
       <SectionHeader subtitle="Formation" title="Mon Parcours Académique" className="qualification-header" />
       <div className="education-container">
-        <div className="school-info">
+        <div
+          ref={schoolInfoRef}
+          className="school-info"
+          style={{
+            transform: window.innerWidth > 1024 ? `translateY(${scrollProgress}px)` : "none",
+            transition: "transform 0.1s ease-out",
+          }}
+        >
           <img src={em} alt="École Multimédia Logo" onClick={handleSchoolClick} className="school-logo" title="Visiter le site de l'École Multimédia" />
           <div className="button-container">
             <div onMouseEnter={() => setHoveredButton(true)} onMouseLeave={() => setHoveredButton(false)} className="button-wrapper">

@@ -115,15 +115,17 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app">
-      <Hero />
-      <Specializing />
-      <Expertise />
-      <LatestProjects />
-      <Qualification />
-      <Testimonials />
-      <Footer onOpenModal={handleOpenModal} />
-      <LegalModal isOpen={!!modalContent} onClose={handleCloseModal} title={modalContent?.title} content={modalContent?.content} />
+    <div className="app w-screen min-h-screen overflow-x-hidden m-0 p-0">
+      <div className="content-wrapper max-w-full">
+        <Hero />
+        <Specializing />
+        <Expertise />
+        <LatestProjects />
+        <Qualification />
+        <Testimonials />
+        <Footer onOpenModal={handleOpenModal} />
+        <LegalModal isOpen={!!modalContent} onClose={handleCloseModal} title={modalContent?.title} content={modalContent?.content} />
+      </div>
     </div>
   );
 };

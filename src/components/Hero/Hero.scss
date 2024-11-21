@@ -16,24 +16,38 @@
     align-items: center;
     gap: 48px;
 
+    @media (max-width: 1250px) {
+      gap: 100px;
+      justify-content: flex-start;
+    }
+
+    @media (max-width: 1024px) {
+      gap: 100px;
+      justify-content: flex-start;
+    }
+
     @media (max-width: 768px) {
       flex-direction: column;
       text-align: center;
+      gap: 32px;
+      padding: 20px 0;
     }
-  }
-
-  .specializing-header,
-  .qualification-header,
-  .testimonials-header {
-    margin-bottom: 3rem;
   }
 
   &__text {
     flex: 1;
     max-width: 600px;
 
+    @media (max-width: 1024px) {
+      max-width: 50%;
+    }
+
+    @media (max-width: 768px) {
+      max-width:80%;
+    }
+
     &-greeting {
-      font-size: 1.25rem;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
       letter-spacing: 1px;
       margin-bottom: 16px;
       text-transform: uppercase;
@@ -47,7 +61,7 @@
     }
 
     &-title {
-      font-size: 2.625rem;
+      font-size: clamp(2rem, 4vw, 2.625rem);
       line-height: 1.2;
       letter-spacing: 1px;
       margin-bottom: 24px;
@@ -68,21 +82,24 @@
     }
 
     &-description {
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 2vw, 1.1rem);
       line-height: 1.6;
       color: #4a4a4a;
       margin-bottom: 30px;
     }
 
     &-skills {
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 2vw, 1.1rem);
       color: #4a4a4a;
       margin: 0;
       list-style: none;
+      padding: 0;
 
       @media (max-width: 768px) {
         text-align: left;
         display: inline-block;
+        width: 100%;
+        max-width: 500px;
       }
 
       li {
@@ -113,13 +130,29 @@
   }
 
   &__image {
-    flex-shrink: 0;
+    flex: 0 0 auto;
     width: 300px;
     height: 400px;
     position: relative;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 1024px) {
+      width: 250px;
+      height: 333px;
+    }
+
+    @media (max-width: 768px) {
+      width: 220px;
+      height: 293px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 480px) {
+      width: 200px;
+      height: 267px;
+    }
 
     &:hover img {
       transform: scale(1.05);
@@ -129,13 +162,19 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center top;
       display: block;
       transition: transform 0.5s ease;
     }
+  }
+}
 
-    @media (max-width: 768px) {
-      width: 250px;
-      height: 333px;
-    }
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
   }
 }

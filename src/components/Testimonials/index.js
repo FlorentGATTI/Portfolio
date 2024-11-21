@@ -1,12 +1,34 @@
 import React, { useState, useEffect } from "react";
 import SocialConnect from "../UI/SocialConnect";
 import SectionHeader from "../UI/SectionHeader";
+import logo from "../../assets/images/logo.jpg"; // Ajustez le chemin selon votre structure
+import "./Testimonials.scss";
 
 const Testimonials = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [logoLoaded, setLogoLoaded] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById("apropos");
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
   }, []);
 
   const expertiseCards = [
@@ -37,6 +59,10 @@ const Testimonials = () => {
       <SectionHeader title="À propos de moi" className="testimonials-header" />
 
       <div className="profile-card">
+        <div className={`logo-container ${logoLoaded ? "logo-loaded" : ""}`}>
+          <img src={logo} alt="Logo personnel" onLoad={() => setLogoLoaded(true)} width="150" height="150" />
+        </div>
+
         <div className="description">
           <p>
             Développeur Full-Stack spécialisé en Big Data avec plus de 3 ans d'expérience, je combine expertise technique et vision stratégique pour créer des solutions data-driven innovantes. Fort d'une expérience chez Sia Partners et d'un Master en Big Data et architectures distribuées, j'excelle dans la transformation de données massives en applications à forte valeur ajoutée. Ma passion pour

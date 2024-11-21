@@ -1,5 +1,5 @@
-@use '../abstracts/variables' as *;
-@use 'sass:color';
+@use "../abstracts/variables" as *;
+@use "sass:color";
 
 * {
   margin: 0;
@@ -7,12 +7,34 @@
   font-family: $font-family;
 }
 
+html,
+body,
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   background-color: $background-color;
   background-repeat: no-repeat;
 }
 
+.app {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0 auto;
+  padding: 0;
+}
+
 a {
   text-decoration: none;
   color: color.adjust($text-color, $lightness: -5%);
+}
+
+:root {
+  --container-width: 1400px;
+  --color-accent: #009b15;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
 }

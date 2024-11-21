@@ -1,10 +1,17 @@
 .qualification-section {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 0;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 2rem);
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: 480px) {
+    padding: 1.5rem 1rem;
+  }
 
   &.visible {
     opacity: 1;
@@ -12,24 +19,39 @@
   }
 
   .education-container {
-    display: grid;
-    grid-template-columns: 400px 1fr;
-    gap: 6rem;
-    margin: 3rem 0;
+    display: flex;
+    gap: clamp(2rem, 5vw, 4rem);
+    margin: 3rem auto;
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      margin: 2rem auto;
+    }
   }
+
   .specializing-header,
   .qualification-header,
   .testimonials-header {
-    margin-bottom: 3rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+
+    @media (max-width: 768px) {
+      text-align: center;
+    }
   }
 
   .school-info {
     position: sticky;
-    top: 2rem;
+    top: 100px;
+    width: clamp(280px, 30vw, 350px);
     height: fit-content;
-    padding: 2.5rem;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
     background: rgba(0, 179, 26, 0.05);
-    border-radius: 1.5rem;
+    border-radius: clamp(1rem, 2vw, 1.5rem);
     border: 1px solid rgba(0, 179, 26, 0.15);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
@@ -37,19 +59,50 @@
     flex-direction: column;
     align-items: center;
     box-shadow: 0 8px 32px rgba(0, 179, 26, 0.08);
+    align-self: flex-start;
+    z-index: 2;
+
+    @media (max-width: 1024px) {
+      position: relative;
+      top: 0;
+      width: min(100%, 350px);
+      margin: 0 auto;
+      transform: none !important;
+    }
+
+    @media (max-width: 480px) {
+      padding: 1.25rem;
+      width: 100%;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      height: calc(100% + 200px);
+      pointer-events: none;
+    }
 
     &:hover {
       border-color: rgba(0, 179, 26, 0.25);
       box-shadow: 0 12px 40px rgba(0, 179, 26, 0.12);
+      transform: translateY(-5px);
     }
 
     .school-logo {
-      width: 85%;
-      border-radius: 1rem;
+      width: min(85%, 280px);
+      border-radius: clamp(0.75rem, 1.5vw, 1rem);
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       filter: drop-shadow(0 8px 16px rgba(0, 179, 26, 0.15));
-      margin-bottom: 2rem;
+      margin-bottom: clamp(1.5rem, 3vw, 2rem);
+
+      @media (max-width: 480px) {
+        width: 75%;
+        margin-bottom: 1.25rem;
+      }
 
       &:hover {
         transform: translateY(-5px);
@@ -61,14 +114,14 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-top: 1.5rem;
+      margin-top: clamp(1rem, 2vw, 1.5rem);
 
       .cv-button {
         background: linear-gradient(45deg, #009b15, #00b31a);
         color: white;
-        padding: 0.8rem 2rem;
+        padding: clamp(0.6rem, 1.5vw, 0.8rem) clamp(1.5rem, 3vw, 2rem);
         border-radius: 99px;
-        font-size: 0.95rem;
+        font-size: clamp(0.85rem, 1.5vw, 0.95rem);
         font-weight: 500;
         letter-spacing: 0.5px;
         text-decoration: none;
@@ -77,34 +130,45 @@
         box-shadow: 0 4px 15px rgba(0, 179, 26, 0.2);
         position: relative;
         overflow: hidden;
+        white-space: nowrap;
 
-        &::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-          transform: translateX(-100%);
-          transition: transform 0.6s ease;
+        @media (hover: hover) {
+          &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 179, 26, 0.3);
+          }
         }
 
-        &:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 25px rgba(0, 179, 26, 0.3);
-
-          &::before {
-            transform: translateX(100%);
-          }
+        @media (max-width: 480px) {
+          width: 100%;
+          text-align: center;
+          padding: 0.7rem 1rem;
         }
       }
     }
   }
 
   .qualifications-timeline {
+    flex: 1;
+    min-width: 0;
     position: relative;
-    padding-left: 3rem;
+    padding-left: clamp(1.5rem, 4vw, 3rem);
+    padding-right: clamp(0.5rem, 2vw, 1rem);
+
+    @media (max-width: 1024px) {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      padding-left: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      padding-left: 1.5rem;
+      padding-right: 0.25rem;
+    }
 
     &::before {
       content: "";
@@ -116,69 +180,112 @@
       background: linear-gradient(180deg, rgba(0, 179, 26, 0) 0%, rgba(0, 179, 26, 0.3) 5%, rgba(0, 179, 26, 0.7) 20%, rgba(0, 179, 26, 0.7) 80%, rgba(0, 179, 26, 0.3) 95%, rgba(0, 179, 26, 0) 100%);
       border-radius: 3px;
       box-shadow: 0 0 15px rgba(0, 179, 26, 0.2);
+
+      @media (max-width: 768px) {
+        left: 0.5rem;
+      }
+
+      @media (max-width: 480px) {
+        left: 0.25rem;
+      }
+    }
+
+    .year-badge {
+      @media (max-width: 768px) {
+        margin-right: 50px !important;
+      }
     }
 
     .qualification-item {
       position: relative;
-      margin-bottom: 4rem;
-      padding: 2rem;
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+      padding: clamp(1.25rem, 3vw, 2rem);
       background: rgba(0, 179, 26, 0.03);
       border: 1px solid rgba(0, 179, 26, 0.1);
-      border-radius: 1.2rem;
+      border-radius: clamp(0.8rem, 1.5vw, 1.2rem);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       opacity: 0;
       transform: translateX(-20px);
       animation: slideIn 0.5s ease forwards;
+      width: calc(100% - 1rem);
+      margin-left: auto;
+      margin-right: auto;
 
-      @for $i from 1 through 5 {
-        &:nth-child(#{$i}) {
-          animation-delay: #{$i * 0.2}s;
-        }
+      @media (max-width: 768px) {
+        padding: 1.5rem;
+        margin-bottom: 2.5rem;
+        width: 70%;
+        margin-right: 75px;
+      }
+
+      @media (max-width: 480px) {
+        padding: 1.25rem;
+        margin-bottom: 2rem;
+        width: calc(100% - 0.5rem);
       }
 
       &::before {
         content: "";
         position: absolute;
-        left: -3.65rem;
+        left: clamp(-2rem, -4vw, -3.65rem);
         top: 2.5rem;
-        width: 1rem;
-        height: 1rem;
+        width: clamp(0.8rem, 1.2vw, 1rem);
+        height: clamp(0.8rem, 1.2vw, 1rem);
         background: #00b31a;
         border-radius: 50%;
         border: 3px solid rgba(255, 255, 255, 0.9);
         box-shadow: 0 0 0 3px rgba(0, 179, 26, 0.3), 0 0 20px rgba(0, 179, 26, 0.5);
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+        @media (max-width: 768px) {
+          left: -2.25rem;
+          top: 2rem;
+        }
+
+        @media (max-width: 480px) {
+          left: -1.75rem;
+          width: 0.7rem;
+          height: 0.7rem;
+        }
       }
 
-      &:hover {
-        transform: translateX(8px);
-        background: rgba(0, 179, 26, 0.05);
-        border-color: rgba(0, 179, 26, 0.2);
+      @media (hover: hover) {
+        &:hover {
+          transform: translateX(8px);
+          background: rgba(0, 179, 26, 0.05);
+          border-color: rgba(0, 179, 26, 0.2);
 
-        &::before {
-          transform: scale(1.2);
-          box-shadow: 0 0 0 4px rgba(0, 179, 26, 0.4), 0 0 30px rgba(0, 179, 26, 0.6);
+          &::before {
+            transform: scale(1.2);
+            box-shadow: 0 0 0 4px rgba(0, 179, 26, 0.4), 0 0 30px rgba(0, 179, 26, 0.6);
+          }
+
+          .year-badge {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 179, 26, 0.35);
+          }
         }
       }
 
       .year-badge {
         position: absolute;
-        right: 1.5rem;
+        right: clamp(1rem, 2vw, 1.5rem);
         top: -0.8rem;
         background: linear-gradient(45deg, #009b15, #00b31a);
         color: white;
-        padding: 0.4rem 1.2rem;
+        padding: clamp(0.3rem, 1vw, 0.4rem) clamp(0.8rem, 1.5vw, 1.2rem);
         border-radius: 99px;
         font-weight: 600;
-        font-size: 0.9rem;
+        font-size: clamp(0.8rem, 1.2vw, 0.9rem);
         letter-spacing: 0.5px;
         box-shadow: 0 4px 15px rgba(0, 179, 26, 0.25);
         transition: all 0.3s ease;
-      }
 
-      &:hover .year-badge {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0, 179, 26, 0.35);
+        @media (max-width: 480px) {
+          padding: 0.25rem 0.8rem;
+          font-size: 0.75rem;
+          right: 0.8rem;
+        }
       }
     }
   }
@@ -201,45 +308,5 @@
   to {
     opacity: 1;
     transform: translateX(0);
-  }
-}
-
-@media (max-width: 1024px) {
-  .qualification-section {
-    padding: 2rem;
-
-    .education-container {
-      grid-template-columns: 1fr;
-      gap: 4rem;
-    }
-
-    .school-info {
-      position: relative;
-      top: 0;
-      padding: 2rem;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .qualification-section {
-    .animated-title .main-title {
-      font-size: 2rem;
-    }
-
-    .qualifications-timeline {
-      padding-left: 2.5rem;
-    }
-  }
-  @media (max-width: 767px) {
-    .qualification-section {
-      .animated-title .main-title {
-        font-size: 2rem;
-      }
-
-      .qualifications-timeline {
-        padding-left: 3rem;
-      }
-    }
   }
 }

@@ -6,21 +6,21 @@ const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [typedText, setTypedText] = useState("");
   const [typingComplete, setTypingComplete] = useState(false);
-  const fullText = "Je suis Développeur Full-Stack";
 
   useEffect(() => {
     setIsVisible(true);
     let index = 0;
+    let text = "Je suis Développeur Full-Stack";
 
     const typeWriter = setInterval(() => {
-      if (index < fullText.length) {
-        setTypedText((prev) => prev + fullText[index]);
+      if (index < text.length) {
+        setTypedText(prev => text.slice(0, index + 1));
         index++;
       } else {
         clearInterval(typeWriter);
         setTypingComplete(true);
       }
-    }, 50);
+    }, 100); // Augmentons légèrement le délai
 
     return () => clearInterval(typeWriter);
   }, []);

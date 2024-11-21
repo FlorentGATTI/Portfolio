@@ -1,19 +1,32 @@
+.section-header__subtitle {
+  padding-top: 50px;
+}
+
 .specializing {
   padding: 4rem 0;
   max-width: 1200px;
   margin: 0 auto;
 
   .card {
-    padding: 3rem;
+    border-radius: 20px;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
-    border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+  }
 
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  .specializing-header {
+    padding: 2rem 0;
+    text-align: center;
+
+    h2 {
+      margin-top: 0.5rem;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    p {
+      color: #00d31f;
+      font-weight: 500;
     }
   }
 
@@ -22,6 +35,8 @@
     gap: 1rem;
     margin: 2rem 0;
     flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 2rem;
 
     .filter-btn {
       padding: 0.75rem 1.5rem;
@@ -53,6 +68,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+    padding: 2rem;
 
     .skill-card {
       background: white;
@@ -60,9 +76,7 @@
       border-radius: 16px;
       border-top: 4px solid #00d31f;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      opacity: 0;
-      animation: fadeIn 0.5s ease forwards;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
       &:hover {
         transform: translateY(-8px) scale(1.02);
@@ -70,12 +84,6 @@
 
         .skill-icon {
           transform: scale(1.1) rotate(5deg);
-        }
-
-        .progress-bar {
-          background: linear-gradient(45deg, #00b31a, #00d31f, #00b31a);
-          background-size: 200% 200%;
-          animation: gradientShift 2s linear infinite;
         }
       }
 
@@ -109,9 +117,10 @@
 
       .progress-bar {
         height: 100%;
+        width: 0;
         background: linear-gradient(to right, #00b31a, #00d31f);
         border-radius: 999px;
-        transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: width 0.2s ease-out;
       }
 
       .skill-value {
@@ -124,69 +133,21 @@
   }
 }
 
-.specializing-header,
-.qualification-header,
-.testimonials-header {
-  margin-bottom: 3rem;
-}
-
-@keyframes slideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes lineGrow {
-  to {
-    width: 60px;
-  }
-}
-
-@keyframes fadeRotate {
-  to {
-    opacity: 1;
-    transform: rotate(45deg) scale(1);
-  }
-}
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (max-width: 768px) {
   .specializing {
     padding: 2rem 1rem;
 
-    .card {
-      padding: 2rem;
-    }
+    .specializing-header {
+      padding: 1.5rem 0;
 
-    .filters {
-      justify-content: center;
+      h2 {
+        font-size: 1.75rem;
+      }
     }
 
     .skills-grid {
       grid-template-columns: 1fr;
+      padding: 1.5rem;
     }
   }
 }
