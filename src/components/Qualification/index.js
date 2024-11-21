@@ -57,7 +57,7 @@ const Qualification = () => {
 
         // Calcul de la position avec une courbe d'accélération
         const easedProgress = easeInOutQuad(boundedProgress);
-        const maxScroll = 695; // Distance maximale de défilement
+        const maxScroll = 500; // Distance maximale de défilement
 
         setScrollProgress(easedProgress * maxScroll);
       } else if (sectionRect.top > windowHeight) {

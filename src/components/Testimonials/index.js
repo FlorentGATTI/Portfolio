@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import SocialConnect from "../UI/SocialConnect";
 import SectionHeader from "../UI/SectionHeader";
-import logo from "../../assets/images/logo.jpg"; // Ajustez le chemin selon votre structure
 import "./Testimonials.scss";
 
 const Testimonials = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [logoLoaded, setLogoLoaded] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -56,12 +54,10 @@ const Testimonials = () => {
 
   return (
     <div className={`testimonials-section ${isVisible ? "visible" : ""}`} id="apropos">
-      <SectionHeader title="À propos de moi" className="testimonials-header" />
 
       <div className="profile-card">
-        <div className={`logo-container ${logoLoaded ? "logo-loaded" : ""}`}>
-          <img src={logo} alt="Logo personnel" onLoad={() => setLogoLoaded(true)} width="150" height="150" />
-        </div>
+      <SectionHeader title="À propos de moi" className="testimonials-header" />
+
 
         <div className="description">
           <p>
