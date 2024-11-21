@@ -17,84 +17,6 @@
     }
   }
 
-  .title-container {
-    position: relative;
-    margin-bottom: 3rem;
-
-    .subtitle {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #00d31f;
-      margin-bottom: 0.5rem;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: slideUp 0.6s ease forwards;
-      font-weight: bold;
-      background: linear-gradient(45deg, #00b31a, #00d31f);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-
-      &::before {
-        content: '';
-        position: absolute;
-        width: 30px;
-        height: 2px;
-        background: #00d31f;
-        left: -40px;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    }
-
-    .title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: #1a1a1a;
-      margin-bottom: 1rem;
-      position: relative;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: slideUp 0.6s ease forwards 0.2s;
-
-      &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: -10px;
-        width: 0;
-        height: 4px;
-        background: linear-gradient(to right, #00b31a, #00d31f);
-        animation: lineGrow 0.6s ease forwards 0.8s;
-      }
-    }
-
-    .title-decoration {
-      position: absolute;
-      top: -15px;
-      left: -20px;
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: rgba(0, 211, 31, 0.1);
-      transform: rotate(45deg);
-      opacity: 0;
-      animation: fadeRotate 0.6s ease forwards 0.4s;
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 20px;
-        height: 20px;
-        border-radius: 5px;
-        background: rgba(0, 211, 31, 0.2);
-        transform: translate(-50%, -50%);
-      }
-    }
-  }
-
   .filters {
     display: flex;
     gap: 1rem;
@@ -202,6 +124,12 @@
   }
 }
 
+.specializing-header,
+.qualification-header,
+.testimonials-header {
+  margin-bottom: 3rem;
+}
+
 @keyframes slideUp {
   to {
     opacity: 1;
@@ -223,9 +151,15 @@
 }
 
 @keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes fadeIn {
@@ -245,12 +179,6 @@
 
     .card {
       padding: 2rem;
-    }
-
-    .title-container {
-      .title {
-        font-size: 2rem;
-      }
     }
 
     .filters {

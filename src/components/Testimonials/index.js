@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import resizeMe from "../../assets/images/resizeMe.png";
 import SocialConnect from "../UI/SocialConnect";
-
+import SectionHeader from "../UI/SectionHeader";
 
 const Testimonials = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -10,44 +9,43 @@ const Testimonials = () => {
     setIsVisible(true);
   }, []);
 
+  const expertiseCards = [
+    {
+      title: "Innovation & Veille",
+      description: "Veille technologique sur l'IA, le Big Data et le Cloud Computing. Passion pour les technologies émergentes.",
+      icon: "🔍",
+    },
+    {
+      title: "Pipeline Data",
+      description: "ETL Python avec Pandas, NumPy et SQLAlchemy. Traitement des données massives via Hadoop et Spark.",
+      icon: "⚡",
+    },
+    {
+      title: "Architecture & DevOps",
+      description: "Patterns de conception et pratiques DevOps. Expérience avec Docker et architectures distribuées.",
+      icon: "🏗️",
+    },
+    {
+      title: "Full-Stack Dev",
+      description: "React, Vue.js, Django, FastAPI. Création d'interfaces utilisateur intuitives et performantes.",
+      icon: "💻",
+    },
+  ];
+
   return (
-    <div className={`testimonials-section ${isVisible ? "visible" : ""}`}>
-      <div className="heading-container">
-        <h1 className="title">À propos de moi</h1>
-      </div>
+    <div className={`testimonials-section ${isVisible ? "visible" : ""}`} id="apropos">
+      <SectionHeader title="À propos de moi" className="testimonials-header" />
 
       <div className="profile-card">
-        <div className="profile-header">
-          <div className="avatar">
-            <img src={resizeMe} alt="Florent GATTI" />
-          </div>
-          <div className="profile-info">
-            <h2 className="name">Florent GATTI</h2>
-          </div>
-        </div>
-
         <div className="description">
-          <p>Passionné par l'innovation technologique et spécialisé en Big Data, j'associe expertise technique et vision stratégique pour transformer des volumes massifs de données en solutions à forte valeur ajoutée.</p>
+          <p>
+            Développeur Full-Stack spécialisé en Big Data avec plus de 3 ans d'expérience, je combine expertise technique et vision stratégique pour créer des solutions data-driven innovantes. Fort d'une expérience chez Sia Partners et d'un Master en Big Data et architectures distribuées, j'excelle dans la transformation de données massives en applications à forte valeur ajoutée. Ma passion pour
+            l'innovation technologique et le développement durable guide mon approche dans la création de solutions performantes et écologiquement responsables.
+          </p>
         </div>
 
         <div className="expertise-grid">
-          {[
-            {
-              title: "Innovation & Veille",
-              description: "Veille active sur l'IA, le Big Data et le Cloud Computing",
-              icon: "🔍",
-            },
-            {
-              title: "Architecture",
-              description: "Patterns de conception et bonnes pratiques DevOps",
-              icon: "🏗️",
-            },
-            {
-              title: "Open Source",
-              description: "Contribution et suivi des projets innovants dans l'écosystème data",
-              icon: "🌐",
-            },
-          ].map((item, index) => (
+          {expertiseCards.map((item, index) => (
             <div key={index} className="expertise-card">
               <span className="icon">{item.icon}</span>
               <h3>{item.title}</h3>
@@ -59,7 +57,7 @@ const Testimonials = () => {
 
       <div className="contact-section">
         <h2>Intéressé par mon profil ?</h2>
-        <p>N'hésitez pas à me contacter pour discuter de vos projets</p>
+        <p>Discutons de vos projets et des solutions data-driven que nous pourrions créer ensemble</p>
         <a href="mailto:flogatti@orange.fr" className="contact-button">
           flogatti@orange.fr
         </a>

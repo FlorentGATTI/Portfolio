@@ -2,33 +2,6 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 4rem 2rem;
-  background: linear-gradient(135deg, rgba(240, 255, 240, 0.7) 0%, rgba(255, 255, 255, 0.95) 100%);
-
-  .heading-container {
-    position: relative;
-    text-align: center;
-    margin-bottom: 4rem;
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #00ff00, transparent);
-    }
-
-    .title {
-      font-size: 2.8rem;
-      background: linear-gradient(120deg, #111 0%, #00ff00 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-    }
-  }
 
   .profile-card {
     background: rgba(255, 255, 255, 0.95);
@@ -50,7 +23,7 @@
         height: 120px;
         border-radius: 50%;
         padding: 3px;
-        background: linear-gradient(45deg, #00ff00 0%, rgba(0, 255, 0, 0.5) 100%);
+        background: linear-gradient(45deg, #00b31a 0%, rgba(0, 255, 0, 0.5) 100%);
 
         img {
           width: 100%;
@@ -66,7 +39,7 @@
           font-size: 2.4rem;
           font-weight: 700;
           margin-bottom: 0.5rem;
-          background: linear-gradient(120deg, #111 0%, #00ff00 100%);
+          background: linear-gradient(120deg, #111 0%, #00b31a 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
@@ -89,14 +62,14 @@
 
     .expertise-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
       padding: 1rem;
 
       .expertise-card {
         background: rgba(255, 255, 255, 0.8);
         border-radius: 16px;
-        padding: 2rem;
+        padding: 1.5rem;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         overflow: hidden;
@@ -125,21 +98,22 @@
         }
 
         .icon {
-          font-size: 2.2rem;
-          margin-bottom: 1.2rem;
+          font-size: 2rem;
+          margin-bottom: 1rem;
           display: block;
         }
 
         h3 {
-          color: #00ff00;
-          font-size: 1.4rem;
-          margin-bottom: 1rem;
+          color: #00b31a;
+          font-size: 1.2rem;
+          margin-bottom: 0.8rem;
           font-weight: 600;
         }
 
         p {
           color: #666;
-          line-height: 1.6;
+          line-height: 1.5;
+          font-size: 0.95rem;
         }
       }
     }
@@ -154,7 +128,7 @@
     box-shadow: 0 4px 20px rgba(0, 255, 0, 0.08), 0 0 0 1px rgba(0, 255, 0, 0.1);
 
     h2 {
-      color: #00ff00;
+      color: #00b31a;
       font-size: 2rem;
       margin-bottom: 1rem;
       font-weight: 700;
@@ -170,7 +144,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      color: #00ff00;
+      color: #00b31a;
       font-size: 1.1rem;
       font-weight: 500;
       padding: 1rem 2.5rem;
@@ -185,24 +159,36 @@
       &:hover {
         background-position: right bottom;
         transform: translateY(-2px);
-        border-color: #00ff00;
+        border-color: #00b31a;
         box-shadow: 0 4px 12px rgba(0, 255, 0, 0.15);
       }
     }
   }
-}
 
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
+  .specializing-header,
+  .qualification-header,
+  .testimonials-header {
+    margin-bottom: 3rem;
   }
-  100% {
-    background-position: 1000px 0;
-  }
-}
 
-@media screen and (max-width: 768px) {
-  .testimonials-section {
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    padding: 3rem 1.5rem;
+
+    .expertise-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
     padding: 2rem 1rem;
 
     .title {
@@ -212,6 +198,7 @@
     .profile-header {
       flex-direction: column;
       text-align: center;
+      gap: 1.5rem;
 
       .name {
         font-size: 2rem;
@@ -219,7 +206,11 @@
     }
 
     .expertise-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr !important;
+    }
+
+    .contact-section {
+      padding: 2rem;
     }
   }
 }

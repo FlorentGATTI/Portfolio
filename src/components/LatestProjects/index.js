@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Card from "../UI/Card";
-import SmallHeading from "../UI/SmallHeading";
-import MediumHeading from "../UI/MediumHeading";
+import SectionHeader from "../UI/SectionHeader";
 import "./LatestProjects.scss";
 
 const LatestProjects = () => {
@@ -35,11 +34,8 @@ const LatestProjects = () => {
   ];
 
   return (
-    <div className="latest-projects">
-      <div className="latest-projects__header">
-        <SmallHeading text="PORTFOLIOS" className="text-green-500" />
-        <MediumHeading text="DERNIERS PROJETS" className="text-2xl font-bold mt-2" />
-      </div>
+    <div className="latest-projects" id="portfolio">
+      <SectionHeader subtitle="Portfolios" title="Derniers Projets" className="latest-projects__header" />
 
       <div className="projects-grid">
         {projects.map((project) => (

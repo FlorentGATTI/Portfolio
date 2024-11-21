@@ -1,21 +1,256 @@
-.conversationContainer {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  box-shadow: 0 0 20px 0 green;
+.footer {
+  padding: 2rem 0;
+  border-top: 1px solid rgba(0, 211, 31, 0.1);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+
+  &__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__left {
+    .footer__brand {
+      color: #00d31f;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .footer__subtitle {
+      color: #666;
+      font-size: 0.9rem;
+      margin: 0.25rem 0;
+    }
+
+    .footer__copyright {
+      color: #888;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    gap: 1.5rem;
+
+    a {
+      color: #666;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #00d31f;
+      }
+    }
+  }
+
+  &__legal {
+    text-align: right;
+
+    &-btn {
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 0.85rem;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s ease;
+      text-align: right;
+      display: block;
+      width: 100%;
+
+      &:hover {
+        color: #00d31f;
+      }
+    }
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
 }
-.conversationContainer img {
-  width: 25px;
-  height: 25px;
+
+.modal-content {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: modalFadeIn 0.3s ease;
+
+  h2 {
+    color: #00d31f;
+    margin-bottom: 1.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .modal-body {
+    margin: 1rem 0;
+
+    h3 {
+      color: #333;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    h4 {
+      color: #444;
+      font-size: 1.1rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .modal-content-section {
+    padding: 0 1rem;
+  }
 }
-.footerMenus a {
-  display: inline-block;
-  margin: 0 10px;
-  text-transform: uppercase;
-  color: #777;
-  font-size: 14px;
-  font-weight: 500;
+
+// Assurer que le body ne défile pas quand la modale est ouverte
+body.modal-open {
+  overflow: hidden;
+}
+
+// Animations améliorées
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    &__content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    &__left {
+      order: 1;
+    }
+
+    &__nav {
+      order: 2;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    &__legal {
+      order: 3;
+      text-align: center;
+
+      &-btn {
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 1rem;
+    padding: 2rem 1.5rem;
+    max-height: 90vh;
+  }
+  .footer {
+    padding: 1.5rem 0;
+
+    &__nav {
+      gap: 1rem;
+
+      a {
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  .modal-content {
+    padding: 1.5rem;
+    width: 95%;
+  }
+}
+
+@keyframes highlight {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(0, 211, 31, 0.1);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.section-highlight {
+  animation: highlight 1.5s ease-out;
 }

@@ -22,6 +22,12 @@
     }
   }
 
+  .specializing-header,
+  .qualification-header,
+  .testimonials-header {
+    margin-bottom: 3rem;
+  }
+
   &__text {
     flex: 1;
     max-width: 600px;

@@ -2,7 +2,7 @@
   position: relative;
   padding: 4rem 0;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,211,31,0.05) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 211, 31, 0.05) 100%);
   min-height: 50vh;
 }
 
@@ -12,6 +12,12 @@
   padding: 0 2rem;
   position: relative;
   z-index: 2;
+}
+
+.specializing-header,
+.qualification-header,
+.testimonials-header {
+  margin-bottom: 3rem;
 }
 
 .expertise-header {
@@ -31,7 +37,7 @@
     transform-style: preserve-3d;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       inset: -10px;
       border-radius: 25px;
@@ -49,7 +55,7 @@
     width: 100%;
     height: auto;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     animation: float 6s ease-in-out infinite;
     transition: transform 0.5s ease;
     transform-style: preserve-3d;
@@ -66,11 +72,7 @@
     height: 150%;
     top: -25%;
     left: -25%;
-    background: radial-gradient(
-      circle at center,
-      rgba(0,211,31,0.2) 0%,
-      transparent 70%
-    );
+    background: radial-gradient(circle at center, rgba(0, 211, 31, 0.2) 0%, transparent 70%);
     filter: blur(20px);
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -100,7 +102,7 @@
 }
 
 .expertise-card {
-  background: rgba(255,255,255,0.98);
+  background: rgba(255, 255, 255, 0.98);
   border-radius: 15px;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -109,9 +111,7 @@
 
   &:hover {
     transform: translateY(-10px) translateZ(20px);
-    box-shadow:
-      0 20px 40px rgba(0,211,31,0.15),
-      0 0 20px rgba(0,211,31,0.1);
+    box-shadow: 0 20px 40px rgba(0, 211, 31, 0.15), 0 0 20px rgba(0, 211, 31, 0.1);
 
     .card-icon {
       transform: scale(1.2) rotate(10deg);
@@ -168,8 +168,20 @@
   line-height: 1.6;
 }
 
+.progress-container {
+  margin-bottom: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  // Center the percentage text
+  .CircularProgressbar-text {
+    dominant-baseline: middle;
+    text-anchor: middle;
+    font-weight: 600;
+  }
+}
+
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) translateZ(0);
   }
   50% {

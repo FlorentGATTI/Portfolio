@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
-import SmallHeading from "../UI/SmallHeading";
+import SectionHeader from "../UI/SectionHeader";
 import Button from "../UI/Button";
 import Tile from "../UI/Tile";
 import em from "../../assets/images/logoem.png";
-
-const AnimatedTitle = ({ text }) => (
-  <div className="animated-title">
-    <h2 className="main-title">{text}</h2>
-    <div className="underline" />
-  </div>
-);
 
 const QualificationItem = ({ data, isVisible }) => (
   <div className={`qualification-item ${isVisible ? "visible" : ""}`} style={{ animationDelay: `${data.delay}s` }}>
@@ -20,7 +13,7 @@ const QualificationItem = ({ data, isVisible }) => (
 
 const Qualification = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredButton, setHoveredButton] = useState(null);
+  const [hoveredButton, setHoveredButton] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
@@ -56,18 +49,15 @@ const Qualification = () => {
   };
 
   return (
-    <div className={`qualification-section ${isVisible ? "visible" : ""}`}>
-      <SmallHeading text="formation" />
-      <AnimatedTitle text="Mon Parcours Académique" />
+    <div className={`qualification-section ${isVisible ? "visible" : ""}`} id="formation">
+      <SectionHeader subtitle="Formation" title="Mon Parcours Académique" className="qualification-header" />
       <div className="education-container">
         <div className="school-info">
           <img src={em} alt="École Multimédia Logo" onClick={handleSchoolClick} className="school-logo" title="Visiter le site de l'École Multimédia" />
-          <div className="button-group">
-            {["hire", "cv"].map((btn, index) => (
-              <div key={btn} onMouseEnter={() => setHoveredButton(btn)} onMouseLeave={() => setHoveredButton(null)} className="button-wrapper">
-                <Button label={btn === "hire" ? "Engagez-moi" : "Télécharger CV"} inverse={btn === "cv"} className={hoveredButton === btn ? "hovered" : ""} />
-              </div>
-            ))}
+          <div className="button-container">
+            <div onMouseEnter={() => setHoveredButton(true)} onMouseLeave={() => setHoveredButton(false)} className="button-wrapper">
+              <Button label="Télécharger CV" inverse={true} className={hoveredButton ? "hovered" : ""} />
+            </div>
           </div>
         </div>
         <div className="qualifications-timeline">

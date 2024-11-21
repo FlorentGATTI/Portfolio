@@ -25,12 +25,14 @@ const Hero = () => {
     return () => clearInterval(typeWriter);
   }, []);
 
+  const skillsets = ["JavaScript/TypeScript: React, Vue.js, Next.js", "Python/Backend: Django, FastAPI, Express", "Big Data: Hadoop, Spark, Pandas, TensorFlow", "Base de données: MySQL, PostgreSQL, MongoDB"];
+
   return (
-    <section className="hero">
+    <section className="hero" id="accueil">
       <div className={`hero__content ${isVisible ? "visible" : ""}`}>
         <div className="hero__text fade-in">
           <p className="hero__text-greeting">
-            <span>BONJOUR</span>, JE M'APPELLE FLORENT GATTI
+            <span>BONJOUR</span>, JE M'APPELLE <span>FLORENT GATTI</span>
           </p>
 
           <h1 className={`hero__text-title ${!typingComplete ? "typing" : ""}`}>
@@ -38,13 +40,12 @@ const Hero = () => {
             {typingComplete && <span>BIG DATA</span>}
           </h1>
 
-          <p className="hero__text-description">Développeur Full-Stack spécialisé en Big Data, j'allie expertise technique et vision business pour transformer les données massives en solutions à forte valeur ajoutée. Master en Big Data et architectures distribuées.</p>
+          <p className="hero__text-description">Expert en développement Full-Stack avec une spécialisation en Big Data, je combine maîtrise technique et approche business pour créer des solutions data-driven innovantes. Titulaire d'un Master en Big Data et architectures distribuées, je transforme les données complexes en applications à forte valeur ajoutée.</p>
 
           <ul className="hero__text-skills">
-            <li>JavaScript/TypeScript: React, Vue.js, Next.js</li>
-            <li>Python/Backend: Django, FastAPI, Express</li>
-            <li>Big Data: Hadoop, Spark, Pandas, TensorFlow</li>
-            <li>Base de données: MySQL, PostgreSQL, MongoDB</li>
+            {skillsets.map((skill, index) => (
+              <li key={index}>{skill}</li>
+            ))}
           </ul>
         </div>
 

@@ -11,105 +11,91 @@
     transform: translateY(0);
   }
 
-  .animated-title {
-    text-align: center;
-    margin-bottom: 4rem;
-
-    .main-title {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: #000000;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      opacity: 0;
-      transform: translateY(-20px);
-      animation: fadeInDown 0.5s ease forwards;
-    }
-
-    .underline {
-      height: 4px;
-      background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.8), transparent);
-      margin: 0 auto;
-      border-radius: 2px;
-      max-width: 200px;
-      transform: scaleX(0);
-      animation: expandWidth 0.8s ease-out 0.3s forwards;
-    }
-  }
-
   .education-container {
     display: grid;
     grid-template-columns: 400px 1fr;
     gap: 6rem;
     margin: 3rem 0;
-
-    @media (max-width: 1024px) {
-      grid-template-columns: 1fr;
-      gap: 4rem;
-    }
+  }
+  .specializing-header,
+  .qualification-header,
+  .testimonials-header {
+    margin-bottom: 3rem;
   }
 
   .school-info {
     position: sticky;
     top: 2rem;
     height: fit-content;
-    padding: 3rem;
-    background: rgba(0, 255, 0, 0.02);
-    border-radius: 2rem;
-    border: 1px solid rgba(0, 255, 0, 0.1);
+    padding: 2.5rem;
+    background: rgba(0, 179, 26, 0.05);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(0, 179, 26, 0.15);
     backdrop-filter: blur(10px);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 8px 32px rgba(0, 179, 26, 0.08);
+
+    &:hover {
+      border-color: rgba(0, 179, 26, 0.25);
+      box-shadow: 0 12px 40px rgba(0, 179, 26, 0.12);
+    }
 
     .school-logo {
-      width: 100%;
-      border-radius: 1.5rem;
+      width: 85%;
+      border-radius: 1rem;
       cursor: pointer;
-      transition: all 0.3s ease;
-      filter: drop-shadow(0 10px 20px rgba(0, 255, 0, 0.15));
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: drop-shadow(0 8px 16px rgba(0, 179, 26, 0.15));
+      margin-bottom: 2rem;
 
       &:hover {
-        transform: scale(1.02);
-        filter: drop-shadow(0 20px 40px rgba(0, 255, 0, 0.25)) brightness(1.1);
+        transform: translateY(-5px);
+        filter: drop-shadow(0 16px 24px rgba(0, 179, 26, 0.25));
       }
     }
 
-    .button-group {
-      margin-top: 3rem;
+    .button-container {
+      width: 100%;
       display: flex;
-      gap: 2rem;
+      justify-content: center;
+      margin-top: 1.5rem;
 
-      .button-wrapper {
-        flex: 1;
-        transition: transform 0.3s ease;
+      .cv-button {
+        background: linear-gradient(45deg, #009b15, #00b31a);
+        color: white;
+        padding: 0.8rem 2rem;
+        border-radius: 99px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        border: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(0, 179, 26, 0.2);
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+          transform: translateX(-100%);
+          transition: transform 0.6s ease;
+        }
 
         &:hover {
           transform: translateY(-3px);
-        }
+          box-shadow: 0 8px 25px rgba(0, 179, 26, 0.3);
 
-        button {
-          width: 100%;
-          position: relative;
-          overflow: hidden;
-
-          &::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 255, 0, 0.1);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-          }
-
-          &:hover::after {
-            transform: translateX(0);
-          }
-
-          &.hovered {
-            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.2);
+          &::before {
+            transform: translateX(100%);
           }
         }
       }
@@ -124,70 +110,75 @@
       content: "";
       position: absolute;
       left: 0;
-      top: 2rem;
-      bottom: 2rem;
-      width: 2px;
-      background: linear-gradient(180deg, transparent, rgba(0, 255, 0, 0.8) 20%, rgba(0, 255, 0, 0.8) 80%, transparent);
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background: linear-gradient(180deg, rgba(0, 179, 26, 0) 0%, rgba(0, 179, 26, 0.3) 5%, rgba(0, 179, 26, 0.7) 20%, rgba(0, 179, 26, 0.7) 80%, rgba(0, 179, 26, 0.3) 95%, rgba(0, 179, 26, 0) 100%);
+      border-radius: 3px;
+      box-shadow: 0 0 15px rgba(0, 179, 26, 0.2);
     }
 
     .qualification-item {
       position: relative;
-      margin-bottom: 5rem;
-      padding: 2.5rem;
-      background: rgba(0, 255, 0, 0.02);
-      border: 1px solid rgba(0, 255, 0, 0.1);
-      border-radius: 1.5rem;
+      margin-bottom: 4rem;
+      padding: 2rem;
+      background: rgba(0, 179, 26, 0.03);
+      border: 1px solid rgba(0, 179, 26, 0.1);
+      border-radius: 1.2rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       opacity: 0;
       transform: translateX(-20px);
-      transition: all 0.5s ease;
+      animation: slideIn 0.5s ease forwards;
 
-      &.visible {
-        opacity: 1;
-        transform: translateX(0);
+      @for $i from 1 through 5 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{$i * 0.2}s;
+        }
       }
 
       &::before {
         content: "";
         position: absolute;
-        left: -3rem;
+        left: -3.65rem;
         top: 2.5rem;
-        width: 1.2rem;
-        height: 1.2rem;
-        background: radial-gradient(circle at center, #00ff00, rgba(0, 255, 0, 0.7));
+        width: 1rem;
+        height: 1rem;
+        background: #00b31a;
         border-radius: 50%;
-        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
-        transition: all 0.4s ease;
-      }
-
-      .year-badge {
-        position: absolute;
-        right: 2rem;
-        top: -1rem;
-        background: rgba(0, 255, 0, 0.95);
-        color: rgba(0, 0, 0, 0.9);
-        padding: 0.5rem 1.5rem;
-        border-radius: 2rem;
-        font-weight: 600;
-        font-size: 0.95rem;
-        letter-spacing: 0.5px;
-        box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3);
-        transition: all 0.3s ease;
+        border: 3px solid rgba(255, 255, 255, 0.9);
+        box-shadow: 0 0 0 3px rgba(0, 179, 26, 0.3), 0 0 20px rgba(0, 179, 26, 0.5);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       &:hover {
         transform: translateX(8px);
-        background: rgba(0, 255, 0, 0.04);
-        border-color: rgba(0, 255, 0, 0.2);
+        background: rgba(0, 179, 26, 0.05);
+        border-color: rgba(0, 179, 26, 0.2);
 
         &::before {
-          transform: scale(1.5);
-          box-shadow: 0 0 40px rgba(0, 255, 0, 0.8);
+          transform: scale(1.2);
+          box-shadow: 0 0 0 4px rgba(0, 179, 26, 0.4), 0 0 30px rgba(0, 179, 26, 0.6);
         }
+      }
 
-        .year-badge {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 25px rgba(0, 255, 0, 0.4);
-        }
+      .year-badge {
+        position: absolute;
+        right: 1.5rem;
+        top: -0.8rem;
+        background: linear-gradient(45deg, #009b15, #00b31a);
+        color: white;
+        padding: 0.4rem 1.2rem;
+        border-radius: 99px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 15px rgba(0, 179, 26, 0.25);
+        transition: all 0.3s ease;
+      }
+
+      &:hover .year-badge {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 179, 26, 0.35);
       }
     }
   }
@@ -206,23 +197,48 @@
   }
 }
 
-@media (max-width: 768px) {
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 1024px) {
   .qualification-section {
     padding: 2rem;
 
+    .education-container {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+
+    .school-info {
+      position: relative;
+      top: 0;
+      padding: 2rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .qualification-section {
     .animated-title .main-title {
       font-size: 2rem;
     }
 
     .qualifications-timeline {
       padding-left: 2.5rem;
+    }
+  }
+  @media (max-width: 767px) {
+    .qualification-section {
+      .animated-title .main-title {
+        font-size: 2rem;
+      }
 
-      .qualification-item {
-        padding: 2rem;
-
-        &::before {
-          left: -2.5rem;
-        }
+      .qualifications-timeline {
+        padding-left: 3rem;
       }
     }
   }
