@@ -6,6 +6,11 @@
   transition: all 0.3s ease;
   opacity: 0.97;
 
+  @media (max-width: 600px) {
+    text-align: center;
+    padding: 0;
+  }
+
   &:hover {
     opacity: 1;
   }
@@ -43,7 +48,7 @@
     }
 
     @media (max-width: 768px) {
-      max-width:80%;
+      max-width: 80%;
     }
 
     &-greeting {

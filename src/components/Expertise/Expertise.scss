@@ -222,6 +222,27 @@
   }
 }
 
+@media (max-width: 600px) {
+  .expertise-container {
+    padding: 2rem 1rem;
+  }
+
+  .expertise-profile {
+    width: 200px;
+    margin-bottom: 3rem;
+  }
+
+  .card-content {
+    padding: 1.5rem;
+  }
+
+  .social-connect {
+    position: relative;
+    bottom: 0;
+    margin-top: 1rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .expertise-profile .profile-image,
   .expertise-card,
