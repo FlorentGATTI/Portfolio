@@ -10,7 +10,7 @@ const Hero = () => {
   useEffect(() => {
     setIsVisible(true);
     let index = 0;
-    let text = "Je suis Développeur Full-Stack";
+    let text = "Je suis Développeur Full Stack";
 
     const typeWriter = setInterval(() => {
       if (index < text.length) {
@@ -40,7 +40,7 @@ const Hero = () => {
             {typingComplete && <span>BIG DATA</span>}
           </h1>
 
-          <p className="hero__text-description">Expert en développement Full-Stack avec une spécialisation en Big Data, je combine maîtrise technique et approche business pour créer des solutions data-driven innovantes. Titulaire d'un Master en Big Data et architectures distribuées, je transforme les données complexes en applications à forte valeur ajoutée.</p>
+          <p className="hero__text-description">Expert en développement Full Stack avec une spécialisation en Big Data, je combine maîtrise technique et approche business pour créer des solutions data-driven innovantes. Titulaire d'un Master en Big Data et architectures distribuées, je transforme les données complexes en applications à forte valeur ajoutée.</p>
 
           <ul className="hero__text-skills">
             {skillsets.map((skill, index) => (

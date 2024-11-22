@@ -46,7 +46,7 @@ const Testimonials = () => {
       icon: "🏗️",
     },
     {
-      title: "Full-Stack Dev",
+      title: "Full Stack Dev",
       description: "React, Vue.js, Django, FastAPI. Création d'interfaces utilisateur intuitives et performantes.",
       icon: "💻",
     },
@@ -61,7 +61,7 @@ const Testimonials = () => {
 
         <div className="description">
           <p>
-            Développeur Full-Stack spécialisé en Big Data avec plus de 3 ans d'expérience, je combine expertise technique et vision stratégique pour créer des solutions data-driven innovantes. Fort d'une expérience chez Sia Partners et d'un Master en Big Data et architectures distribuées, j'excelle dans la transformation de données massives en applications à forte valeur ajoutée. Ma passion pour
+            Développeur Full Stack spécialisé en Big Data avec plus de 3 ans d'expérience, je combine expertise technique et vision stratégique pour créer des solutions data-driven innovantes. Fort d'une expérience chez Sia Partners et d'un Master en Big Data et architectures distribuées, j'excelle dans la transformation de données massives en applications à forte valeur ajoutée. Ma passion pour
             l'innovation technologique et le développement durable guide mon approche dans la création de solutions performantes et écologiquement responsables.
           </p>
         </div>

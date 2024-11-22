@@ -10,7 +10,7 @@ const LatestProjects = () => {
     {
       id: 1,
       title: "Currency Converter",
-      description: "Application Full-Stack de conversion de devises en temps réel avec gestion des taux de change",
+      description: "Application Full Stack de conversion de devises en temps réel avec gestion des taux de change",
       technologies: ["Vue.js", "Laravel", "API REST"],
       image: "https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=800&auto=format&fit=crop",
       github: "https://github.com/FlorentGATTI/Currency-converter",

@@ -43,7 +43,7 @@ const Footer = ({ onOpenModal }) => {
       <div className="footer__content">
         <div className="footer__left">
           <h3 className="footer__brand">Florent GATTI</h3>
-          <p className="footer__subtitle">Développeur Full-Stack Big Data</p>
+          <p className="footer__subtitle">Développeur Full Stack Big Data</p>
           <p className="footer__copyright">© {currentYear} Tous droits réservés</p>
         </div>
 

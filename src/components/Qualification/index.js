@@ -92,7 +92,7 @@ const Qualification = () => {
       year: "2023",
       title: "École Multimédia, Paris",
       mediumTitle: "Master 1 Développeur Multimédia",
-      desc: "Certification Full-Stack, Architecture backend, API REST",
+      desc: "Certification Full Stack, Architecture backend, API REST",
       delay: 0.4,
     },
     {

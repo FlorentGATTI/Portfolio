@@ -6,7 +6,7 @@ import "./Expertise.scss";
 
 const expertiseData = [
   {
-    title: "Full-Stack Development",
+    title: "Full Stack Development",
     percentage: 80,
     description: "Expertise en JavaScript/Node.js et Python/Django pour des solutions web complètes. Stack technique: React, Vue.js, Next.js, Express, FastAPI",
     icon: "💻",
@@ -36,47 +36,46 @@ const expertiseData = [
 ];
 
 const Expertise = () => {
-  const [visibleCards, setVisibleCards] = useState(new Set());
-  const [animatedPercentages, setAnimatedPercentages] = useState(expertiseData.map(() => 0));
+  const [animatedPercentages, setAnimatedPercentages] = useState(() => expertiseData.map(() => 0));
+  const [animatedCards] = useState(() => new Set());
+  const [cardsVisible, setCardsVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
+        if (entries.some((entry) => entry.isIntersecting) && !cardsVisible) {
+          setCardsVisible(true);
+        }
+
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const cardIndex = parseInt(entry.target.dataset.index);
-            setVisibleCards((prev) => new Set([...prev, cardIndex]));
+            if (!animatedCards.has(cardIndex)) {
+              animatedCards.add(cardIndex);
+              let count = 0;
+              const interval = setInterval(() => {
+                if (count < expertiseData[cardIndex].percentage) {
+                  count++;
+                  setAnimatedPercentages((prev) => {
+                    const newPercentages = [...prev];
+                    newPercentages[cardIndex] = count;
+                    return newPercentages;
+                  });
+                } else {
+                  clearInterval(interval);
+                }
+              }, 20);
+            }
           }
         });
       },
-      { threshold: 1 }
+      { threshold: 0.5 }
     );
 
     const cards = document.querySelectorAll(".expertise-card");
     cards.forEach((card) => observer.observe(card));
-
-    return () => cards.forEach((card) => observer.unobserve(card));
-  }, []);
-
-  useEffect(() => {
-    visibleCards.forEach((index) => {
-      if (animatedPercentages[index] === 0) {
-        const interval = setInterval(() => {
-          setAnimatedPercentages((prev) => {
-            const newPercentages = [...prev];
-            if (newPercentages[index] < expertiseData[index].percentage) {
-              newPercentages[index] += 1;
-            } else {
-              clearInterval(interval);
-            }
-            return newPercentages;
-          });
-        }, 20);
-
-        return () => clearInterval(interval);
-      }
-    });
-  }, [visibleCards, animatedPercentages]);
+    return () => observer.disconnect();
+  }, [animatedCards, cardsVisible]);
 
   return (
     <div className="expertise-container" id="expertise">
@@ -84,7 +83,8 @@ const Expertise = () => {
         <SectionHeader subtitle="Expertise" title="Compétences particulières" className="expertise-header" />
         <div className="expertise-grid">
           {expertiseData.map((item, index) => (
-            <Card key={index} className="expertise-card" data-aos="zoom-in" data-aos-delay={index * 100} data-index={index}>
+            <Card key={index} className={`expertise-card ${cardsVisible ? "visible" : ""}`} data-index={index}>
+              {" "}
               <div className="card-content">
                 <div className="progress-container">
                   <CircularProgressbar

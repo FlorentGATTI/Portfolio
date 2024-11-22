@@ -1,7 +1,6 @@
 .testimonials-section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 2rem;
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.6s ease-out;
@@ -9,6 +8,7 @@
   &.visible {
     opacity: 1;
     transform: translateY(0);
+    padding-bottom: 50px;
   }
 
   .profile-card {
